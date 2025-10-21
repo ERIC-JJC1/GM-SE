@@ -3,9 +3,11 @@ import numpy as np
 
 def wrap_angle(a): return (a + np.pi) % (2*np.pi) - np.pi
 def unpack_state(x, nbus):
-    theta = x[..., :nbus]
-    vm    = x[..., nbus:]
-    return theta, vm
+    """ x: (..., 2N) -> (..., N), (..., N) """
+    # 变化：匹配 [theta, vm] 格式
+    va = x[..., :nbus]
+    vm = x[..., nbus:]
+    return vm, va
 
 def h_measure(ybus, x, ztype, baseMVA, slack_pos):
     x = np.asarray(x, dtype=np.float64)          # ★ 强制双精度
