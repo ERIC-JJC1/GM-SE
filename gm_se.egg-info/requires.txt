@@ -1,0 +1,17 @@
+torch>=2.0.0
+torch-geometric>=2.6.0
+pandapower>=3.1.0
+simbench>=1.6.0
+numpy>=1.23.0
+scipy>=1.10.0
+pandas>=2.0.0
+wandb
+tqdm
+matplotlib
+lxml
+
+[dev]
+black
+isort
+flake8
+pre-commit

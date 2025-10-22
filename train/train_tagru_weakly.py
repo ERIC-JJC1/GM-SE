@@ -1,4 +1,4 @@
-# train/train_tagru_weakly.py
+# train/train_tagru_weakly.py (已修改)
 #
 # 这是最终的训练脚本，实现了论文中的“物理信息弱监督”
 # 它 *不* 使用 StateLoss 进行训练，
@@ -8,10 +8,7 @@ import os, math, argparse,sys
 import numpy as np
 import torch
 import torch.nn as nn
-THIS_DIR = os.path.dirname(os.path.abspath(__file__))
-ROOT_DIR = os.path.dirname(THIS_DIR)
-if ROOT_DIR not in sys.path:
-    sys.path.insert(0, ROOT_DIR)
+# [已删除] 移除了 sys.path 注入代码
 
 from torch.utils.data import DataLoader
 from train.dataset import WindowDataset
@@ -22,29 +19,9 @@ from tools.train_sweep_and_compare import temporal_smooth
 from physics.losses import PhysicsInformedLoss
 # ========================================================
 
-# ================== 关键改动 2: 保留评估工具 ==================
-# 我们仍然需要 ac_model.py 中的评估函数
-# 来计算 RMSE，以便与 "x_true" 进行 *比较*
-from physics.ac_model import h_measure
-
-def theta_wrap(pred, gt):
-    return (pred - gt + math.pi) % (2*math.pi) - math.pi
-
-def rmse_metrics(x_hat, x_true):
-    """
-    使用 Numpy 计算 RMSE (仅用于评估，不可微分)
-    """
-    # 确保在 CPU 和 Numpy 上
-    x_hat_np = x_hat.detach().cpu().numpy()
-    x_true_np = x_true.detach().cpu().numpy()
-    
-    N = x_true_np.shape[-1] // 2
-    # 假设 x_hat 是 [vm, va]
-    dth = theta_wrap(x_hat_np[..., N:], x_true_np[..., N:])
-    dv  = x_hat_np[..., :N] - x_true_np[..., :N]
-    th_rmse = np.sqrt(np.mean(dth**2)) * 180.0 / math.pi
-    vm_rmse = np.sqrt(np.mean(dv**2))
-    return float(th_rmse), float(vm_rmse)
+# ================== 关键改动 2: 导入评估工具 ==================
+from tools.metrics import rmse_metrics # [已修改] 从 tools.metrics 导入
+# [已删除] 移除了本地定义的 theta_wrap 和 rmse_metrics
 # ==========================================================
 
 # --- 数据加载器 (保持不变) ---
@@ -193,7 +170,8 @@ def main():
 
                 # ================== 关键改动 7: 评估指标 ==================
                 # 仅用于 *报告*：计算 RMSE
-                th_rmse, vm_rmse = rmse_metrics(x_hat, x_gt)
+                # [已修改] 指定 state_order='vm_va' (tagru 的输出顺序)
+                th_rmse, vm_rmse = rmse_metrics(x_hat, x_gt, state_order='vm_va')
                 ths.append(th_rmse); vms.append(vm_rmse)
                 # =========================================================
 
@@ -227,7 +205,8 @@ def main():
             x_hat = model(z_seq, feat_seq, A_time=A, E_time=E)
             
             # 仅用于 *报告*：计算 RMSE
-            th_rmse, vm_rmse = rmse_metrics(x_hat, x_gt)
+            # [已修改] 指定 state_order='vm_va'
+            th_rmse, vm_rmse = rmse_metrics(x_hat, x_gt, state_order='vm_va')
             ths.append(th_rmse); vms.append(vm_rmse)
             
         print(f"[TEST] θ-RMSE={np.mean(ths):.3f}°, |V|-RMSE={np.mean(vms):.4f}")

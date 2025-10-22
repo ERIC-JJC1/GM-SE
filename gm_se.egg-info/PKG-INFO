@@ -1,0 +1,21 @@
+Metadata-Version: 2.4
+Name: gm-se
+Version: 0.1.0
+Summary: State Estimation for Distribution Grids using GNNs and Physics-Informed Learning
+Requires-Python: >=3.10
+Requires-Dist: torch>=2.0.0
+Requires-Dist: torch-geometric>=2.6.0
+Requires-Dist: pandapower>=3.1.0
+Requires-Dist: simbench>=1.6.0
+Requires-Dist: numpy>=1.23.0
+Requires-Dist: scipy>=1.10.0
+Requires-Dist: pandas>=2.0.0
+Requires-Dist: wandb
+Requires-Dist: tqdm
+Requires-Dist: matplotlib
+Requires-Dist: lxml
+Provides-Extra: dev
+Requires-Dist: black; extra == "dev"
+Requires-Dist: isort; extra == "dev"
+Requires-Dist: flake8; extra == "dev"
+Requires-Dist: pre-commit; extra == "dev"

@@ -1,13 +1,10 @@
-# train/train_refine_baseline.py（关键改动）
+# train/train_refine_baseline.py (已修改)
 
 import os, math, argparse,sys
 import numpy as np
 import torch
 import torch.nn as nn
-THIS_DIR = os.path.dirname(os.path.abspath(__file__))
-ROOT_DIR = os.path.dirname(THIS_DIR)
-if ROOT_DIR not in sys.path:
-    sys.path.insert(0, ROOT_DIR)
+# [已删除] 移除了 sys.path 注入代码
 from torch.utils.data import DataLoader
 from train.dataset import WindowDataset
 from models.refine_seq import RefineSeqTAModel   # 改这里
@@ -15,6 +12,9 @@ from models.refine_seq import RefineSeqTAModel   # 改这里
 from tools.train_sweep_and_compare import temporal_smooth
 from build_ieee33_with_pp import build_ieee33
 from physics.ac_model import h_measure
+
+# [已修改] 从 tools.metrics 导入
+from tools.metrics import StateLoss, rmse_metrics 
 
 _ybus, _baseMVA, _slack_pos = None, None, None
 def init_phys_meta(slack_pos):
@@ -43,30 +43,7 @@ def physics_loss(x_hat, z, R, ztype, eps=1e-9):
             loss += float((wres**2).mean())
     return x_hat.new_tensor(loss / (B*W))
 
-
-def theta_wrap(pred, gt):
-    return (pred - gt + math.pi) % (2*math.pi) - math.pi
-
-class StateLoss(nn.Module):
-    def __init__(self, bus_count: int, w_theta: float = 2.0, w_vm: float = 1.0):
-        super().__init__()
-        self.N = bus_count
-        self.wt, self.wv = w_theta, w_vm
-    def forward(self, x_hat, x_true):
-        N = self.N
-        dth = theta_wrap(x_hat[..., :N], x_true[..., :N])
-        dv  = x_hat[..., N:] - x_true[..., N:]
-        l_th = (dth**2).mean()
-        l_v  = (dv**2).mean()
-        return self.wt*l_th + self.wv*l_v, (l_th.detach(), l_v.detach())
-
-def rmse_metrics(x_hat, x_true):
-    N = x_true.shape[-1] // 2
-    dth = theta_wrap(x_hat[..., :N], x_true[..., :N])
-    dv  = x_hat[..., N:] - x_true[..., N:]
-    th_rmse = torch.sqrt((dth**2).mean()).item() * 180.0 / math.pi
-    vm_rmse = torch.sqrt((dv**2).mean()).item()
-    return th_rmse, vm_rmse
+# [已删除] 移除了本地定义的 theta_wrap, StateLoss, rmse_metrics
 
 def make_loader(npz_path, batch_size, shuffle, input_mode="whiten"):
     ds = WindowDataset(npz_path, input_mode=input_mode)   # 传路径+选择白化输入
@@ -89,6 +66,12 @@ def main():
     ap.add_argument("--bias_scale", type=float, default=3.0)
     ap.add_argument("--use_mask", action="store_true", default=False)
     ap.add_argument("--device", type=str, default="cuda" if torch.cuda.is_available() else "cpu")
+    
+    # [新增] 物理损失和时间损失的权重 (在原脚本中缺失，补充默认值)
+    ap.add_argument("--lambda_phys", type=float, default=0.0)
+    ap.add_argument("--w_temp_th", type=float, default=0.0)
+    ap.add_argument("--w_temp_vm", type=float, default=0.0)
+    
     args = ap.parse_args()
 
     p_train = os.path.join(args.data_dir, f"{args.tag}_train.npz")
@@ -113,7 +96,9 @@ def main():
         use_mask=args.use_mask
     ).to(args.device)
 
-    loss_fn = StateLoss(bus_count=Nbus, w_theta=2.0, w_vm=1.0)
+    # [已修改] 使用从 metrics 导入的 StateLoss
+    # 指定 state_order='va_vm' (refine-wls 的输出顺序：角度在前)
+    loss_fn = StateLoss(bus_count=Nbus, w_theta=2.0, w_vm=1.0, state_order='va_vm').to(args.device)
     opt = torch.optim.Adam(model.parameters(), lr=args.lr)
     sched = torch.optim.lr_scheduler.ReduceLROnPlateau(opt, mode="min", patience=5, factor=0.5)
 
@@ -137,8 +122,10 @@ def main():
             # 物理损失
             if "ztype" in batch:  # 你的 dataset 会给
                 if _ybus is None:
-                    meta = batch["meta"]  # slack_pos 等
-                    init_phys_meta(meta["slack_pos"])
+                    # [已修改] 假设 meta 在 batch 中
+                    meta_batch = batch["meta"]  # slack_pos 等
+                    # 假设 'slack_pos' 是一个 tensor 或 list，取第一个元素
+                    init_phys_meta(meta_batch["slack_pos"][0])
                 L_phys = physics_loss(x_hat, batch["z"], batch["R"], batch["ztype"])
             else:
                 L_phys = x_hat.new_zeros(())            
@@ -151,7 +138,7 @@ def main():
             opt.step()
 
             bs = r.size(0)
-            tot    += loss.item()*bs
+            tot    += sup_loss.item()*bs # [已修改] 使用 sup_loss.item()
             tot_lth+= lth.item()*bs
             tot_lv += lv.item()*bs
 
@@ -173,7 +160,8 @@ def main():
                 loss, _ = loss_fn(x_hat, x_gt)
                 va_loss += loss.item()*r.size(0)
 
-                th_rmse, vm_rmse = rmse_metrics(x_hat, x_gt)
+                # [已修改] 指定 state_order='va_vm'
+                th_rmse, vm_rmse = rmse_metrics(x_hat, x_gt, state_order='va_vm')
                 ths.append(th_rmse); vms.append(vm_rmse)
 
             va_loss /= len(dl_va.dataset)
@@ -200,7 +188,8 @@ def main():
             E     = batch["E_time"].to(args.device)
             x_gt  = batch["x"].to(args.device)
             x_hat = model(r, x_wls, feat, A_time=A, E_time=E)
-            th_rmse, vm_rmse = rmse_metrics(x_hat, x_gt)
+            # [已修改] 指定 state_order='va_vm'
+            th_rmse, vm_rmse = rmse_metrics(x_hat, x_gt, state_order='va_vm')
             ths.append(th_rmse); vms.append(vm_rmse)
         print(f"[TEST] θ-RMSE={np.mean(ths):.3f}°, |V|-RMSE={np.mean(vms):.4f}")
 

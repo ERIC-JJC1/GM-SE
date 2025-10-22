@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gm-se"
+version = "0.1.0"
+description = "State Estimation for Distribution Grids using GNNs and Physics-Informed Learning"
+requires-python = ">=3.10"
+
+# 运行时依赖：使用 PEP 621 的标准字段 dependencies（取代 install_requires）
+dependencies = [
+    "torch>=2.0.0",
+    "torch-geometric>=2.6.0",
+    "pandapower>=3.1.0",
+    "simbench>=1.6.0",
+    "numpy>=1.23.0",
+    "scipy>=1.10.0",
+    "pandas>=2.0.0",
+    "wandb",
+    "tqdm",
+    "matplotlib",
+    "lxml"
+]
+
+[project.optional-dependencies]
+dev = [
+    "black",
+    "isort",
+    "flake8",
+    "pre-commit",
+]
+
+[tool.setuptools]
+# 如果你希望 setuptools 自动查找包，也可以使用 find:
+# packages = { find = true }
+# 或显式声明 package 列表（保持和你当前的目录结构一致）
+packages = ["models", "physics", "train", "eval", "tools", "data_pipeline"]
