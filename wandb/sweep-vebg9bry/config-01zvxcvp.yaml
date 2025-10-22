@@ -1,0 +1,36 @@
+wandb_version: 1
+
+batch_size:
+  value: 16
+bias_scale:
+  value: 3
+data_dir:
+  value: data/windows_ieee33
+device:
+  value: cuda
+epochs:
+  value: 100
+hidden:
+  value: 256
+lambda_op:
+  value: 1
+lambda_pf:
+  value: 1
+lambda_smooth:
+  value: 0.1
+lambda_wls_reg:
+  value: 5
+layers:
+  value: 2
+lr:
+  value: 0.0005
+nhead:
+  value: 4
+tag:
+  value: W24
+use_mask:
+  value: false
+w_temp_th:
+  value: 0.01
+w_temp_vm:
+  value: 0.01

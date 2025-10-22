@@ -1,0 +1,12 @@
+{"time":"2025-10-21T17:34:23.559443746+08:00","level":"INFO","msg":"stream: starting","core version":"0.22.2"}
+{"time":"2025-10-21T17:34:24.526660066+08:00","level":"INFO","msg":"stream: created new stream","id":"ecrjz910"}
+{"time":"2025-10-21T17:34:24.526847294+08:00","level":"INFO","msg":"handler: started","stream_id":"ecrjz910"}
+{"time":"2025-10-21T17:34:24.52687693+08:00","level":"INFO","msg":"stream: started","id":"ecrjz910"}
+{"time":"2025-10-21T17:34:24.526907752+08:00","level":"INFO","msg":"sender: started","stream_id":"ecrjz910"}
+{"time":"2025-10-21T17:34:24.526924785+08:00","level":"INFO","msg":"writer: started","stream_id":"ecrjz910"}
+{"time":"2025-10-21T17:41:31.96872327+08:00","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"updating run metadata","runtime_seconds":0.000742694}],"total_operations":1}}
+{"time":"2025-10-21T17:41:33.224821999+08:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-10-21T17:41:33.802982148+08:00","level":"INFO","msg":"stream: closing","id":"ecrjz910"}
+{"time":"2025-10-21T17:41:33.802987125+08:00","level":"INFO","msg":"handler: closed","stream_id":"ecrjz910"}
+{"time":"2025-10-21T17:41:33.803016394+08:00","level":"INFO","msg":"sender: closed","stream_id":"ecrjz910"}
+{"time":"2025-10-21T17:41:33.803018379+08:00","level":"INFO","msg":"stream: closed","id":"ecrjz910"}

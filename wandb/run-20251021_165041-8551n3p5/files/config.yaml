@@ -1,0 +1,96 @@
+_wandb:
+    value:
+        cli_version: 0.22.2
+        e:
+            o984uqlg6hek5s0qjfaajve4n0e2aul5:
+                args:
+                    - --count
+                    - "20"
+                codePath: tools/sweep_tagru.py
+                codePathLocal: tools/sweep_tagru.py
+                cpu_count: 24
+                cpu_count_logical: 32
+                cudaVersion: "12.8"
+                disk:
+                    /:
+                        total: "1967317549056"
+                        used: "118036508672"
+                email: a530029885@gmail.com
+                executable: /home/wzseu/anaconda3/envs/jjc_gm/bin/python
+                git:
+                    commit: 177dda6e4bf15c41857643dd8953cd26082c8c3f
+                    remote: https://github.com/ERIC-JJC1/GM-SE.git
+                gpu: NVIDIA GeForce RTX 4090
+                gpu_count: 2
+                gpu_nvidia:
+                    - architecture: Ada
+                      cudaCores: 16384
+                      memoryTotal: "25757220864"
+                      name: NVIDIA GeForce RTX 4090
+                      uuid: GPU-df9f4d1d-c942-2049-c297-2b04f2cbaa13
+                    - architecture: Ada
+                      cudaCores: 16384
+                      memoryTotal: "25757220864"
+                      name: NVIDIA GeForce RTX 4090
+                      uuid: GPU-710f46d9-de5e-0b0d-2c9b-8e9ea520a688
+                host: wzseu-Z790-EAGLE-AX
+                memory:
+                    total: "202431541248"
+                os: Linux-5.15.0-139-generic-x86_64-with-glibc2.31
+                program: /home/wzseu/JJC_project/wls_33/tools/sweep_tagru.py
+                python: CPython 3.10.18
+                root: /home/wzseu/JJC_project/wls_33
+                startedAt: "2025-10-21T08:50:41.516905Z"
+                writerId: o984uqlg6hek5s0qjfaajve4n0e2aul5
+        m: []
+        python_version: 3.10.18
+        t:
+            "1":
+                - 1
+                - 77
+            "2":
+                - 1
+                - 77
+            "3":
+                - 2
+                - 14
+                - 24
+                - 61
+            "4": 3.10.18
+            "5": 0.22.2
+            "12": 0.22.2
+            "13": linux-x86_64
+batch_size:
+    value: 16
+bias_scale:
+    value: 3
+data_dir:
+    value: data/windows_ieee33
+device:
+    value: cuda
+epochs:
+    value: 100
+hidden:
+    value: 256
+lambda_op:
+    value: 1
+lambda_pf:
+    value: 1
+lambda_smooth:
+    value: 0.1
+lambda_wls_reg:
+    value: 5
+layers:
+    value: 2
+lr:
+    value: 0.001
+nhead:
+    value: 4
+tag:
+    value: W24
+use_mask:
+    value: false
+w_temp_th:
+    value: 0.01
+w_temp_vm:
+    value: 0.01
