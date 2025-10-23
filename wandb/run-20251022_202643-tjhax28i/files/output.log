@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/home/wzseu/JJC_project/wls_33/train/train_pgr_hybrid.py", line 250, in <module>
+    main()
+  File "/home/wzseu/JJC_project/wls_33/train/train_pgr_hybrid.py", line 132, in main
+    pbar_train = tqdm(train_loader, desc=f"Epoch {epoch}/{args.epochs} [Train]")
+NameError: name 'tqdm' is not defined
