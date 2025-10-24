@@ -1,0 +1,39 @@
+模型已实例化:
+TopoAlignGRU(
+  (spatial_encoder_pre): Linear(in_features=4, out_features=128, bias=True)
+  (spatial_encoder): TAGConvStack(
+    (layers): ModuleList(
+      (0-1): 2 x TAGConv(128, 128, K=3)
+    )
+    (dropout): Dropout(p=0.0, inplace=False)
+    (act): ReLU(inplace=True)
+  )
+  (spatial_encoder_post): Linear(in_features=128, out_features=256, bias=True)
+  (temporal_encoder_pre): Sequential(
+    (0): Linear(in_features=76, out_features=256, bias=True)
+    (1): ReLU(inplace=True)
+    (2): Linear(in_features=256, out_features=256, bias=True)
+    (3): ReLU(inplace=True)
+  )
+  (temporal_encoder): GRU(256, 256, num_layers=2, batch_first=True, dropout=0.1)
+  (fusion_module): GatedFusion(
+    (align_g): Linear(in_features=256, out_features=256, bias=True)
+    (align_s): Linear(in_features=256, out_features=256, bias=True)
+    (gate_alpha): Sequential(
+      (0): Linear(in_features=512, out_features=256, bias=True)
+      (1): Sigmoid()
+    )
+  )
+  (decoder_head): Sequential(
+    (0): Linear(in_features=256, out_features=256, bias=True)
+    (1): ReLU(inplace=True)
+    (2): Linear(in_features=256, out_features=2, bias=True)
+  )
+)
+Epoch 1/150 [Train]:   0%|                                                                                                                                                                                                               | 0/5 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/home/wzseu/JJC_project/wls_33/train/train_tagru_hybrid.py", line 331, in <module>
+    main()
+  File "/home/wzseu/JJC_project/wls_33/train/train_tagru_hybrid.py", line 182, in main
+    loss_physics, loss_dict = PhysicsInformedLoss(x_hat, batch_gpu)
+TypeError: cannot unpack non-iterable PhysicsInformedLoss object

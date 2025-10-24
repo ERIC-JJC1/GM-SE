@@ -1,0 +1,14 @@
+{"time":"2025-10-24T18:01:12.477474643+08:00","level":"INFO","msg":"stream: starting","core version":"0.22.2"}
+{"time":"2025-10-24T18:01:19.243909297+08:00","level":"INFO","msg":"stream: created new stream","id":"2821utu2"}
+{"time":"2025-10-24T18:01:19.243993238+08:00","level":"INFO","msg":"handler: started","stream_id":"2821utu2"}
+{"time":"2025-10-24T18:01:19.244401742+08:00","level":"INFO","msg":"stream: started","id":"2821utu2"}
+{"time":"2025-10-24T18:01:19.244432908+08:00","level":"INFO","msg":"writer: started","stream_id":"2821utu2"}
+{"time":"2025-10-24T18:01:19.244479112+08:00","level":"INFO","msg":"sender: started","stream_id":"2821utu2"}
+{"time":"2025-10-24T18:01:22.061487735+08:00","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":37}
+{"time":"2025-10-24T18:01:24.324542062+08:00","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":1694}
+{"time":"2025-10-24T18:01:24.951909794+08:00","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"updating run metadata","runtime_seconds":3.398244032},{"desc":"uploading wandb-metadata.json","runtime_seconds":0.646663093},{"desc":"uploading requirements.txt","runtime_seconds":0.646627145},{"desc":"uploading console lines 0-11","runtime_seconds":0.646333551}],"total_operations":4}}
+{"time":"2025-10-24T18:01:32.257843591+08:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-10-24T18:01:42.012701955+08:00","level":"INFO","msg":"stream: closing","id":"2821utu2"}
+{"time":"2025-10-24T18:01:42.012738825+08:00","level":"INFO","msg":"handler: closed","stream_id":"2821utu2"}
+{"time":"2025-10-24T18:01:42.012836518+08:00","level":"INFO","msg":"sender: closed","stream_id":"2821utu2"}
+{"time":"2025-10-24T18:01:42.012871331+08:00","level":"INFO","msg":"stream: closed","id":"2821utu2"}

@@ -1,0 +1,23 @@
+2025-10-24 17:09:27,097 INFO    MainThread:3408696 [wandb_setup.py:_flush():81] Current SDK version is 0.22.2
+2025-10-24 17:09:27,097 INFO    MainThread:3408696 [wandb_setup.py:_flush():81] Configure stats pid to 3408696
+2025-10-24 17:09:27,097 INFO    MainThread:3408696 [wandb_setup.py:_flush():81] Loading settings from /home/wzseu/.config/wandb/settings
+2025-10-24 17:09:27,097 INFO    MainThread:3408696 [wandb_setup.py:_flush():81] Loading settings from /home/wzseu/JJC_project/wls_33/wandb/settings
+2025-10-24 17:09:27,097 INFO    MainThread:3408696 [wandb_setup.py:_flush():81] Loading settings from environment variables
+2025-10-24 17:09:27,097 INFO    MainThread:3408696 [wandb_init.py:setup_run_log_directory():705] Logging user logs to /home/wzseu/JJC_project/wls_33/wandb/run-20251024_170927-y6tjfyss/logs/debug.log
+2025-10-24 17:09:27,097 INFO    MainThread:3408696 [wandb_init.py:setup_run_log_directory():706] Logging internal logs to /home/wzseu/JJC_project/wls_33/wandb/run-20251024_170927-y6tjfyss/logs/debug-internal.log
+2025-10-24 17:09:27,097 INFO    MainThread:3408696 [wandb_init.py:init():832] calling init triggers
+2025-10-24 17:09:27,097 INFO    MainThread:3408696 [wandb_init.py:init():837] wandb.init called with sweep_config: {}
+config: {'data_dir': 'data/windows_ieee33', 'tag': 'W24', 'epochs': 150, 'batch_size': 32, 'lr': 0.001, 'hidden_dim': 256, 'num_layers': 2, 'gnn_hidden': 128, 'gnn_layers': 2, 'nhead': 4, 'bias_scale': 3.0, 'use_mask': False, 'device': 'cuda', 'lambda_op': 1.0, 'w_temp_th': 0.01, 'w_temp_vm': 0.01, 'wandb_project': 'TAGRU_Weakly_Training', 'save_dir': 'checkpoints', 'seed': 42, '_wandb': {}}
+2025-10-24 17:09:27,097 INFO    MainThread:3408696 [wandb_init.py:init():880] starting backend
+2025-10-24 17:09:27,302 INFO    MainThread:3408696 [wandb_init.py:init():883] sending inform_init request
+2025-10-24 17:09:27,314 INFO    MainThread:3408696 [wandb_init.py:init():891] backend started and connected
+2025-10-24 17:09:27,316 INFO    MainThread:3408696 [wandb_init.py:init():961] updated telemetry
+2025-10-24 17:09:27,323 INFO    MainThread:3408696 [wandb_init.py:init():985] communicating run to backend with 90.0 second timeout
+2025-10-24 17:10:05,302 INFO    MainThread:3408696 [wandb_init.py:init():1036] starting run threads in backend
+2025-10-24 17:10:05,354 INFO    MainThread:3408696 [wandb_run.py:_console_start():2509] atexit reg
+2025-10-24 17:10:05,354 INFO    MainThread:3408696 [wandb_run.py:_redirect():2357] redirect: wrap_raw
+2025-10-24 17:10:05,355 INFO    MainThread:3408696 [wandb_run.py:_redirect():2426] Wrapping output streams.
+2025-10-24 17:10:05,355 INFO    MainThread:3408696 [wandb_run.py:_redirect():2449] Redirects installed.
+2025-10-24 17:10:05,356 INFO    MainThread:3408696 [wandb_init.py:init():1076] run started, returning control to user process
+2025-10-24 17:10:05,663 INFO    wandb-AsyncioManager-main:3408696 [service_client.py:_forward_responses():80] Reached EOF.
+2025-10-24 17:10:05,663 INFO    wandb-AsyncioManager-main:3408696 [mailbox.py:close():137] Closing mailbox, abandoning 2 handles.

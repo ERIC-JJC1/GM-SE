@@ -63,14 +63,16 @@ def main():
         torch.cuda.manual_seed(args.seed)
 
     # (可选) 初始化 wandb
+    # 增加 try-except 块以防 wandb 未安装
+    wandb_run = None
     if args.wandb_project:
         try:
              # Check if wandb is installed before initializing
              import wandb
-             wandb.init(project=args.wandb_project, config=args)
-             wandb.run.name = f"pgr_alpha{args.alpha}_beta{args.beta}_lr{args.lr}_{args.tag}"
+             wandb_run = wandb.init(project=args.wandb_project, config=args)
+             wandb_run.name = f"pgr_alpha{args.alpha}_beta{args.beta}_lr{args.lr}_{args.tag}"
         except ImportError:
-             print("WandB not installed. Skipping WandB initialization.")
+             print("WandB 未安装。跳过 WandB 初始化。")
              args.wandb_project = None # Disable wandb logging if not installed
 
 
@@ -91,18 +93,19 @@ def main():
     val_loader = DataLoader(val_dataset, batch_size=args.batch_size, shuffle=False, num_workers=0)
 
     # 获取维度信息
-    # Use try-except for robustness when loading .npz
+    # 使用 try-except 增加鲁棒性
     try:
+        # 使用 with 确保文件关闭
         with np.load(p_train, allow_pickle=True) as D_sample:
             S = D_sample["x"].shape[2]
             F = D_sample["feat"].shape[2]
             M = D_sample["z"].shape[2]
-            meta = D_sample["meta"].item() if "meta" in D_sample else {}
+            meta = D_sample["meta"].item() if "meta" in D_sample and D_sample["meta"] else {} # 添加检查确保 meta 存在
     except FileNotFoundError:
-        print(f"Error: Training data file not found at {p_train}. Please ensure data exists.")
+        print(f"错误: 训练数据文件未在 {p_train} 找到。请确保数据存在。")
         return
     except Exception as e:
-        print(f"Error loading data dimensions from {p_train}: {e}")
+        print(f"从 {p_train} 加载数据维度时出错: {e}")
         return
 
     Nbus = int(meta.get("bus_count", S // 2))
@@ -120,8 +123,8 @@ def main():
     }
 
     model = PGR(cfg_base=cfg, cfg_refiner=cfg).to(device)
-    if args.wandb_project:
-        wandb.watch(model, log="all")
+    if wandb_run: # 仅在 wandb 初始化成功时 watch
+        wandb_run.watch(model, log="all")
 
     # --- 4. 初始化损失函数 ---
     loss_physics_fn = PhysicsInformedLoss(
@@ -143,21 +146,24 @@ def main():
         # --- 训练 ---
         model.train()
         total_loss, total_physics_loss, total_mse_loss = 0, 0, 0
+        batch_count = 0 # 用于安全计算平均值
 
-        # [!!! 已修复 !!!] 导入 tqdm
+        # [!!! 已修复 !!!] 导入 tqdm 后可以使用
         pbar_train = tqdm(train_loader, desc=f"Epoch {epoch}/{args.epochs} [Train]")
         for batch in pbar_train:
+            batch_count += 1
             # 数据移动到设备
             z_seq = batch["z"].to(device)
             feat_seq = batch["feat"].to(device)
             x_gt_seq = batch["x"].to(device) # 真值标签
             R_seq = batch["R"].to(device)
-            # Ensure 'ztype' exists in batch, handle potential KeyError
+            # 确保 'ztype' 存在于 batch 中, 处理可能的 KeyError
             if "ztype" not in batch:
-                print("Error: 'ztype' not found in batch. Check dataset preparation.")
-                # Option 1: Skip batch (may lead to biased training)
+                print("错误: batch 中未找到 'ztype'。请检查数据集准备过程。")
+                # 选项 1: 跳过此 batch (可能导致训练偏差)
                 # continue
-                # Option 2: Stop training
+                # 选项 2: 停止训练
+                if wandb_run: wandb_run.finish(exit_code=1) # 结束 wandb run
                 return
             ztype_np = batch["ztype"].numpy() # ztype 保持 numpy
 
@@ -190,21 +196,26 @@ def main():
             pbar_train.set_postfix({
                 'Loss': f"{loss_total.item():.4e}",
                 'Phys': f"{loss_physics.item():.4e}",
-                'MSE': f"{loss_mse.item():.4e}"
+                'MSE': f"{loss_mse.item():.4e}",
+                'Res': f"{loss_dict_phys.get('loss_residual', torch.tensor(0.0)).item():.4e}",
+                'Op': f"{loss_dict_phys.get('loss_op', torch.tensor(0.0)).item():.4e}"
             })
 
-        avg_train_loss = total_loss / len(train_loader) if len(train_loader) > 0 else 0
-        avg_physics_loss = total_physics_loss / len(train_loader) if len(train_loader) > 0 else 0
-        avg_mse_loss = total_mse_loss / len(train_loader) if len(train_loader) > 0 else 0
+        # 安全计算平均损失
+        avg_train_loss = total_loss / batch_count if batch_count > 0 else 0
+        avg_physics_loss = total_physics_loss / batch_count if batch_count > 0 else 0
+        avg_mse_loss = total_mse_loss / batch_count if batch_count > 0 else 0
 
         # --- 验证 ---
         model.eval()
         total_val_loss_mse = 0
         all_val_th_rmse, all_val_vm_rmse = [], []
+        val_batch_count = 0
 
         pbar_val = tqdm(val_loader, desc=f"Epoch {epoch}/{args.epochs} [Val]")
         with torch.no_grad():
             for batch in pbar_val:
+                val_batch_count += 1
                 z_seq = batch["z"].to(device)
                 feat_seq = batch["feat"].to(device)
                 x_gt_seq = batch["x"].to(device)
@@ -218,8 +229,9 @@ def main():
                 all_val_th_rmse.append(th_rmse)
                 all_val_vm_rmse.append(vm_rmse)
 
-        avg_val_loss = total_val_loss_mse / len(val_loader) if len(val_loader) > 0 else 0
-        # Use np.nanmean to handle potential NaNs from rmse_metrics if WLS failed
+        # 安全计算平均验证损失和指标
+        avg_val_loss = total_val_loss_mse / val_batch_count if val_batch_count > 0 else 0
+        # 使用 np.nanmean 处理 rmse_metrics 可能因 WLS 失败返回的 NaNs
         avg_val_th_rmse = np.nanmean(all_val_th_rmse) if all_val_th_rmse else float('nan')
         avg_val_vm_rmse = np.nanmean(all_val_vm_rmse) if all_val_vm_rmse else float('nan')
 
@@ -230,22 +242,32 @@ def main():
               f"Val MSE Loss: {avg_val_loss:.4e} | Val RMSE: θ={avg_val_th_rmse:.3f}°, V={avg_val_vm_rmse:.5f} | LR: {optimizer.param_groups[0]['lr']:.2e}")
 
         # (可选) WandB 日志
-        if args.wandb_project:
-            wandb.log({
+        if wandb_run:
+            log_data = {
                 "epoch": epoch,
                 "train_loss_total": avg_train_loss,
                 "train_loss_physics": avg_physics_loss,
                 "train_loss_mse": avg_mse_loss,
+                # 从 loss_dict_phys 中获取 Res 和 Op (需要修改 train_epoch 返回更多值，或在此处计算平均值)
+                # "train_loss_res": avg_res_loss,
+                # "train_loss_op": avg_op_loss,
                 "val_loss_mse": avg_val_loss,
                 "val_rmse_theta_deg": avg_val_th_rmse,
                 "val_rmse_vm_pu": avg_val_vm_rmse,
                 "learning_rate": optimizer.param_groups[0]['lr']
-            })
+            }
+            # 过滤掉 NaN 值
+            log_data_filtered = {k: v for k, v in log_data.items() if not (isinstance(v, float) and np.isnan(v))}
+            wandb_run.log(log_data_filtered)
+
 
         # --- 保存最佳模型 ---
         if avg_val_loss < best_val_loss:
             best_val_loss = avg_val_loss
-            save_path = os.path.join(args.save_dir, f"pgr_hybrid_best_{args.tag}.pt")
+            # 使用更明确的文件名
+            model_save_name = f"{args.wandb_project or 'pgr_hybrid'}_best_{args.tag}.pt"
+            save_path = os.path.join(args.save_dir, model_save_name)
+            print(f"   => Validation loss improved to {best_val_loss:.4e}. Saving model...")
             try:
                 torch.save({
                     'epoch': epoch,
@@ -254,23 +276,23 @@ def main():
                     'val_loss': best_val_loss,
                     'args': args
                 }, save_path)
-                print(f"   => Best model saved to {save_path} (Val Loss: {best_val_loss:.4e})")
-                if args.wandb_project:
-                     wandb.summary["best_val_loss_mse"] = best_val_loss
-                     wandb.summary["best_epoch"] = epoch
-                     # wandb.save(save_path)
+                print(f"   => Best model saved to {save_path}")
+                if wandb_run:
+                     wandb_run.summary["best_val_loss_mse"] = best_val_loss
+                     wandb_run.summary["best_epoch"] = epoch
+                     # wandb.save(save_path) # 保存为 artifact
             except Exception as e:
-                print(f"Error saving checkpoint: {e}")
+                print(f"错误: 保存检查点失败: {e}")
 
 
     # --- 训练结束 ---
-    print(f"\nTraining completed. Best Validation MSE Loss: {best_val_loss:.4e}")
+    print(f"\n训练完成。最佳验证 MSE 损失: {best_val_loss:.4e}")
 
     # (可选) 加载最佳模型并进行最终测试集评估
     # ...
 
-    if args.wandb_project:
-        wandb.finish()
+    if wandb_run:
+        wandb_run.finish()
 
 if __name__ == "__main__":
     main()
