@@ -1,0 +1,43 @@
+program: train/train_tagru_supervised.py
+method: bayes
+metric:
+  name: val_loss_mse
+  goal: minimize
+
+parameters:
+  # ========= 常用超参 =========
+  lr:
+    values: [0.0001, 0.0005, 0.001]
+  hidden_dim:
+    values: [128, 256]
+  num_layers:
+    values: [2, 3]
+  gnn_hidden:
+    values: [64, 128]
+  gnn_layers:
+    values: [2, 3]
+
+  # ========= 固定/运行环境 =========
+  batch_size:
+    values: [16, 32]
+  tag:
+    values: ["W24", "W96"]
+
+  # ========= 训练时长等固定量（可按需改动） =========
+  epochs:
+    value: 60
+  device:
+    value: "cuda"
+  data_dir:
+    value: "data/windows_ieee33"
+  save_dir:
+    value: "checkpoints"
+  wandb_project:
+    value: "GridSE_TAGRU_Supervised"
+  seed:
+    values: [42]   # sweep 内通常固定种子，后续做 3-seed 重复
+
+# 可选：提早终止策略
+# early_terminate:
+#   type: hyperband
+#   min_iter: 10

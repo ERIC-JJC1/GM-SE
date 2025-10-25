@@ -131,6 +131,20 @@ def make_loader(npz_path, batch_size, input_mode="raw", shuffle=False, num_worke
     return dl, dims
 
 
+
+#--------辅助函数---------
+def str2bool(v):
+    if isinstance(v, bool):
+       return v
+    if v.lower() in ('yes', 'true', 't', 'y', '1'):
+        return True
+    elif v.lower() in ('no', 'false', 'f', 'n', '0'):
+        return False
+    else:
+        raise argparse.ArgumentTypeError('Boolean value expected.')
+
+
+
 def main():
     # --- 1. 参数解析 ---
     ap = argparse.ArgumentParser(description="Train TAGRU Supervised Model (Input: z)")
@@ -149,7 +163,8 @@ def main():
     # 注意力超参 (暂时保留)
     ap.add_argument("--nhead", type=int, default=4)
     ap.add_argument("--bias_scale", type=float, default=3.0)
-    ap.add_argument("--use_mask", action="store_true", default=False)
+    ap.add_argument("--use_mask", type=str2bool, nargs='?', const=True, default=False,
+                    help="是否启用时序注意力 Mask（默认 False）")
 
     ap.add_argument("--device", type=str, default="cuda" if torch.cuda.is_available() else "cpu")
 
@@ -423,7 +438,7 @@ def main():
             print(f"[TEST] θ-RMSE={avg_test_th_rmse:.3f}°, |V|-RMSE={avg_test_vm_rmse:.4f}")
 
             if wandb_run:
-                wandb_run.summary["test_rmse_theta_deg"] = avg_test_th_rmse
+                wandb_run.summary["test_rmse_theta_deg"] = avg_test_th_rmse 
                 wandb_run.summary["test_rmse_vm_pu"] = avg_test_vm_rmse
         except (pickle.UnpicklingError, KeyError, RuntimeError, Exception) as e:
             print(f"错误: 加载或测试最佳模型时出错: {e}")

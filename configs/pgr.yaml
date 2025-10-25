@@ -1,0 +1,41 @@
+# Overrides for PGR model training (train_pgr_hybrid.py)
+# 继承 defaults.yaml，以下键将覆盖默认值
+
+# —— 数据与训练轮次 ——
+tag: W24
+epochs: 150
+batch_size: 32
+lr: 0.001            # 比 defaults 略大，便于更快起步
+
+# —— 模型结构（与 PGR 兼容）——
+hidden_dim: 256
+num_layers: 2
+use_gnn: true        # PGR 建议开启 GNN 分支
+gnn_hidden: 128
+gnn_layers: 3        # 覆盖默认 2 层，PGR 更深一点更稳
+dropout: 0.1
+nhead: 4
+bias_scale: 3.0
+use_mask: false
+use_bus_smooth: true
+
+# —— 优化器正则 ——
+weight_decay: 1.0e-05
+device: "cuda"
+save_dir: "checkpoints"
+data_dir: "data/windows_ieee33"
+
+# —— PGR 混合损失权重（覆盖 defaults）——
+alpha: 0.8           # PhysicsInformedLoss 权重（默认 1.0 → 0.8）
+beta: 12.0           # StateLoss 权重（默认 10.0 → 12.0）
+
+# —— 物理项/平滑项（按你默认键命名保持一致）——
+lambda_op: 1.0
+lambda_pf: 0.1
+lambda_smooth: 0.01
+w_temp_th: 0.01
+w_temp_vm: 0.01
+
+# —— 复现实验 & 日志 —— 
+seed: 42
+wandb_project: "GridSE_PGR"

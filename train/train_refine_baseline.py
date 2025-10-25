@@ -128,6 +128,19 @@ def make_loader(npz_path, batch_size, input_mode="whiten", shuffle=False, num_wo
     dims = {'S': S, 'F': F, 'M_input': M_input, 'M_z': M_z, 'Nbus': Nbus, 'slack_pos': slack_pos_val}
     return dl, dims
 
+
+#--------辅助函数---------
+def str2bool(v):
+    if isinstance(v, bool):
+       return v
+    if v.lower() in ('yes', 'true', 't', 'y', '1'):
+        return True
+    elif v.lower() in ('no', 'false', 'f', 'n', '0'):
+        return False
+    else:
+        raise argparse.ArgumentTypeError('Boolean value expected.')
+    
+    
 def main():
     # --- 1. 参数解析 ---
     ap = argparse.ArgumentParser(description="Train Refine-WLS Baseline Model")

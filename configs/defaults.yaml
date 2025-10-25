@@ -1,0 +1,36 @@
+# Default hyperparameters shared across models
+tag: W24          # Default dataset tag (W24 or W96)
+epochs: 60        # Default number of training epochs
+batch_size: 16
+lr: 0.0005        # Default learning rate
+hidden_dim: 256   # Default main hidden dimension (GRU, Attention)
+num_layers: 2     # Default number of layers (GRU, Attention stack)
+gnn_hidden: 128   # Default GNN hidden dimension
+gnn_layers: 2     # Default GNN layers
+dropout: 0.1
+weight_decay: 1.0e-05
+device: "cuda"    # Default device ("cuda" or "cpu")
+save_dir: "checkpoints" # Default directory for saving models
+data_dir: "data/windows_ieee33"
+
+# Default loss weights (relevant for PGR, weak supervision, etc.)
+alpha: 1.0        # Weight for PhysicsInformedLoss in PGR
+beta: 10.0        # Weight for StateLoss in PGR
+lambda_op: 1.0      # Weight for operational constraints in PhysicsInformedLoss
+lambda_pf: 0.1      # Weight for power flow balance in PhysicsInformedLoss (if used)
+lambda_smooth: 0.01 # Weight for spatial smoothing in PhysicsInformedLoss (if used)
+w_temp_th: 0.0    # Temporal smoothing weight for theta
+w_temp_vm: 0.0    # Temporal smoothing weight for Vm
+
+# Default settings for specific models/scripts
+use_gnn: false      # Default for RefineSeq baseline
+use_mask: false     # Default for attention masks
+use_bus_smooth: true # Default for RefineSeq baseline
+nhead: 4          # Default number of attention heads
+bias_scale: 3.0     # Default attention bias scale
+
+# Seed for single runs (sweeps/grid search usually override this)
+seed: 42
+
+# WandB configuration (can be overridden by command line or sweep)
+wandb_project: null # Set to a project name (e.g., "GridSE") to enable logging

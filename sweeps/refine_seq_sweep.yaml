@@ -1,0 +1,51 @@
+program: train/train_refine_baseline.py
+method: bayes
+metric:
+  name: val_loss_mse
+  goal: minimize
+
+parameters:
+  # ========= 常用超参 =========
+  lr:
+    values: [0.0001, 0.0005, 0.001]
+  hidden_dim:
+    values: [128, 256]
+  num_layers:
+    values: [2, 3]
+
+  # ========= RefineSeq 可选模块 =========
+  use_gnn:
+    values: [true, false]
+  gnn_hidden:
+    values: [64, 128]
+  gnn_layers:
+    values: [2, 3]
+  nhead:
+    values: [4, 8]
+  # 若脚本支持 bus smooth 或其他开关，可在此加入
+  # use_bus_smooth:
+  #   values: [true, false]
+
+  # ========= 数据/批量 =========
+  batch_size:
+    values: [16, 32]
+  tag:
+    values: ["W24", "W96"]
+
+  # ========= 训练时长等固定量（可按需改动） =========
+  epochs:
+    value: 60
+  device:
+    value: "cuda"
+  data_dir:
+    value: "data/windows_ieee33"
+  save_dir:
+    value: "checkpoints"
+  wandb_project:
+    value: "GridSE_RefineSeq"
+  seed:
+    values: [42]
+
+# early_terminate:
+#   type: hyperband
+#   min_iter: 10

@@ -1,0 +1,48 @@
+program: train/train_baselines.py
+method: bayes
+metric:
+  name: val_loss_mse
+  goal: minimize
+
+parameters:
+  # ========= 指定基线模型类型（若脚本需此参数）=========
+  model_type:
+    values: ["gru"]
+
+  # ========= 常用超参 =========
+  lr:
+    values: [0.0001, 0.0005, 0.001]
+  hidden_dim:
+    values: [128, 256]
+  num_layers:
+    values: [2, 3]
+
+  # ========= 数据/批量 =========
+  batch_size:
+    values: [16, 32]
+  tag:
+    values: ["W24", "W96"]
+
+  # =========（可选）数据扰动/鲁棒性训练参数（若脚本支持）=========
+  # missing_rate:
+  #   values: [0.0, 0.2, 0.3]
+  # outlier_rate:
+  #   values: [0.0, 0.05, 0.1]
+
+  # ========= 训练时长等固定量（可按需改动） =========
+  epochs:
+    value: 60
+  device:
+    value: "cuda"
+  data_dir:
+    value: "data/windows_ieee33"
+  save_dir:
+    value: "checkpoints"
+  wandb_project:
+    value: "GridSE_GRU_Baseline"
+  seed:
+    values: [42]
+
+# early_terminate:
+#   type: hyperband
+#   min_iter: 10

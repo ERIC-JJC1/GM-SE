@@ -286,9 +286,12 @@ def main():
     ap.add_argument("--batch_size", type=int, default=16)
     ap.add_argument("--device", type=str, default="cuda" if torch.cuda.is_available() else "cpu")
     
-    # --- 模型检查点路径 ---
-    ap.add_argument("--ckpt_tagru", type=str, default="", help="已训练的 'tagru' (弱监督) 模型 checkpoint 路径")
-    ap.add_argument("--ckpt_refine", type=str, default="", help="(可选) 已训练的 'refine-wls' 模型 checkpoint 路径")
+# --- 模型检查点路径 ---
+    ap.add_argument("--ckpt_tagru", type=str, default="", help="已训练的 'tagru' (弱监督/全监督) 模型 checkpoint 路径")
+    # vvvvvvvvvvvv NEW vvvvvvvvvvvvvv
+    ap.add_argument("--ckpt_refine", type=str, default="", help="已训练的 'refine-wls' (RefineSeqTAModel) 模型 checkpoint 路径")
+    ap.add_argument("--ckpt_gru", type=str, default="", help="已训练的 'gru_baseline' (GRUBaseline) 模型 checkpoint 路径")
+    # ^^^^^^^^^^^^ NEW ^^^^^^^^^^^^^^
     ap.add_argument("--ckpt_pgr", type=str, default="", help="已训练的 'PGR' (混合) 模型 checkpoint 路径")
     
     # --- 攻击级别 ---
