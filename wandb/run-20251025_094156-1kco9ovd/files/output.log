@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/home/wzseu/JJC_project/wls_33/train/train_refine_baseline.py", line 427, in <module>
+    main()
+  File "/home/wzseu/JJC_project/wls_33/train/train_refine_baseline.py", line 208, in main
+    nhead=args.nhead,
+AttributeError: 'Namespace' object has no attribute 'nhead'

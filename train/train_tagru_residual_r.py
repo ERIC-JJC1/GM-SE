@@ -36,7 +36,6 @@ def set_seed(seed):
 _ybus, _baseMVA, _slack_pos = None, None, None
 def init_phys_meta(slack_pos):
     global _ybus, _baseMVA, _slack_pos
-    # ... (与 train_refine_baseline.py 相同)
     if _ybus is None:
         _, _ybus, _baseMVA, *_ = build_ieee33()
         _ybus = _ybus.astype(np.complex128)
@@ -45,7 +44,6 @@ def init_phys_meta(slack_pos):
 
 
 def physics_loss(x_hat, z, R, ztype, eps=1e-9):
-    # ... (与 train_refine_baseline.py 相同)
     x_hat_np = x_hat.detach().cpu().numpy()
     z_np = z.detach().cpu().numpy()
     R_np = R.detach().cpu().numpy()
@@ -165,7 +163,6 @@ def main():
     os.makedirs(args.save_dir, exist_ok=True)
 
     # --- 数据加载 ---
-    # 残差模型使用白化残差 'r'
     input_mode = "whiten"
     p_train = os.path.join(args.data_dir, f"{args.tag}_train.npz")
     p_val   = os.path.join(args.data_dir, f"{args.tag}_val.npz")
@@ -187,12 +184,6 @@ def main():
 
     # === 模型实例化 ===
     # [!!! 已修复 !!!] 使用统一的参数名传递给模型
-    # **重要**: 需要确认 models/tagru.py 中的 TopoAlignGRU 是否能处理 (r, x_wls, feat) 输入
-    #          当前 v5 版本 forward(self, z_seq, feat_seq, ...) 不能直接用
-    #          假设存在一个版本或需要修改 forward 来适配
-    #          或者此脚本应使用 RefineSeqTAModel? 根据脚本名推断用 TAGRU
-    #          这里假设 TopoAlignGRU 的 forward 可以被修改或存在适用于此脚本的版本
-    #          如果实际使用的模型是 RefineSeqTAModel，则应 import 并实例化它
     model = TopoAlignGRU(
         meas_dim=M_input, # 输入维度是 'r' 的维度
         feat_dim=F,
@@ -208,7 +199,6 @@ def main():
     print(f"模型已实例化:\n{model}") # 打印确认
 
     # --- 损失函数和优化器 ---
-    # StateLoss 的 state_order 需要与模型输出对齐
     # 假设 TopoAlignGRU 在此模式下输出最终状态 x_hat = x_wls + dx，且顺序是 vm_va
     loss_fn = StateLoss(bus_count=Nbus, w_theta=2.0, w_vm=1.0, state_order='vm_va').to(device)
     opt = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=1e-5)
@@ -226,29 +216,32 @@ def main():
         pbar_train = tqdm(dl_tr, desc=f"Epoch {epoch}/{args.epochs} [Train]")
         for batch in pbar_train:
             train_batch_count += 1
-            r     = batch["z"].to(args.device) # 输入是白化残差 r
+            r     = batch["z"].to(args.device)
             x_wls = batch["x_wls"].to(args.device)
             feat  = batch["feat"].to(args.device)
-            A     = batch["A_time"].to(args.device) if "A_time" in batch else None # Optional
-            E     = batch["E_time"].to(args.device) if "E_time" in batch else None # Optional
+            A     = batch["A_time"].to(args.device) if "A_time" in batch else None
+            E     = batch["E_time"].to(args.device) if "E_time" in batch else None
             x_gt  = batch["x"].to(args.device)
 
             # --- 模型前向 ---
-            # 假设模型 forward(r, x_wls, feat, A_time, E_time) 返回最终状态 x_hat
             try:
-                # *** 重要假设: TopoAlignGRU.forward 需要修改或重载以接受 r, x_wls ***
-                # *** 如果模型内部是 return x_wls + dx，则此调用正确 ***
-                # *** 如果模型内部是 return dx，则需要 x_hat = x_wls + model(...) ***
-                x_hat = model(r, x_wls, feat, A_time=A, E_time=E)
+                x_hat = model(r, feat, A_time=A, E_time=E)
             except TypeError as e:
-                 print(f"\n错误: 调用 model.forward 时参数不匹配: {e}")
-                 print("请检查 train_tagru_residual_r.py L207 与 models/tagru.py 的 forward 定义是否兼容 (r, x_wls) 输入。")
-                 if wandb_run: wandb_run.finish(exit_code=1)
-                 return
+                print(f"\n错误: 调用 model.forward 时参数不匹配: {e}")
+                print("当前 models/tagru.py 的 TopoAlignGRU.forward 仅支持 (z_seq, feat_seq, A_time=None, E_time=None)。")
+                if wandb_run: wandb_run.finish(exit_code=1)
+                return
+            except AttributeError:
+                print(f"\n错误: 模型内部 forward 失败，可能由于输入维度或类型不匹配。")
+                print("请检查 models/tagru.py 的 forward 是否能处理 (r, feat) 输入，且维度与数据集一致。")
+                if wandb_run: wandb_run.finish(exit_code=1)
+                return
 
             # --- 损失计算 ---
-            sup_loss, (lth, lv) = loss_fn(x_hat, x_gt) # 主 MSE 损失
+            # 监督损失：与真值 x_gt 的 MSE（state_order='vm_va'）
+            sup_loss, (lth, lv) = loss_fn(x_hat, x_gt)
 
+            # 可选物理损失（需要 raw_z/R/ztype）
             L_phys = torch.tensor(0.0, device=device)
             if args.lambda_phys > 0:
                 raw_z = batch.get("raw_z")
@@ -257,9 +250,10 @@ def main():
                 if raw_z is not None and R_val is not None and ztype is not None:
                     L_phys = physics_loss(x_hat, raw_z.to(device), R_val.to(device), ztype.numpy())
                 else:
-                     if train_batch_count == 1:
-                         print("警告: 无法计算物理损失，batch 中缺少 'raw_z', 'R' 或 'ztype'。")
+                    if train_batch_count == 1:
+                        print("警告: 无法计算物理损失，batch 中缺少 'raw_z', 'R' 或 'ztype'。")
 
+            # 时间平滑
             L_temp = temporal_smooth(x_hat, args.w_temp_th, args.w_temp_vm)
 
             total = sup_loss + args.lambda_phys * L_phys + L_temp
@@ -306,36 +300,37 @@ def main():
                 x_gt  = batch["x"].to(args.device)
 
                 try:
-                    x_hat = model(r, x_wls, feat, A_time=A, E_time=E)
-                except TypeError as e:
-                     print(f"\n错误: 调用 model.forward (验证) 时参数不匹配: {e}")
-                     continue
+                    # 仅传入 (r, feat) 以匹配模型签名
+                    x_hat = model(r, feat, A_time=A, E_time=E)
+                except (TypeError, AttributeError) as e:
+                    print(f"\n错误: 调用 model.forward (验证) 时参数不匹配或内部错误: {e}")
+                    continue
 
                 loss, _ = loss_fn(x_hat, x_gt)
-                va_loss += loss.item() * r.size(0) # 乘以 bs
+                va_loss += loss.item() * r.size(0)
 
-                th_rmse, vm_rmse = rmse_metrics(x_hat, x_gt, state_order='vm_va') # 假设 vm_va
+                # 指标（保持 state_order 一致）
+                th_rmse, vm_rmse = rmse_metrics(x_hat, x_gt, state_order='vm_va')
                 ths.append(th_rmse); vms.append(vm_rmse)
 
-            # 安全计算平均验证损失和指标
             total_samples_val = len(dl_va.dataset)
             avg_va_loss = va_loss / total_samples_val if total_samples_val > 0 else 0
             avg_th_rmse = np.nanmean(ths) if ths else float('nan')
             avg_vm_rmse = np.nanmean(vms) if vms else float('nan')
 
+        # ---- 调度 step 与日志 ----
         sched.step(avg_va_loss)
-        current_lr = optimizer.param_groups[0]['lr']
+        current_lr = opt.param_groups[0]['lr']  # 统一为 opt，避免 NameError
 
-        print(f"[E{epoch:03d}] Train Loss={avg_tr_loss:.4e} (θ={avg_tr_lth:.4e}, V={avg_tr_lv:.4e}) Phys={avg_tr_phys:.4e} Tmp={avg_tr_temp:.4e} | "
-              f"Val MSE Loss={avg_va_loss:.4e} | EVAL: θ-RMSE={avg_th_rmse:.3f}°, |V|-RMSE={avg_vm_rmse:.4f} | LR: {current_lr:.2e}")
+        print(f"[E{epoch:03d}] Train Loss={avg_tr_loss:.4e} (θ={avg_tr_lth:.4e}, V={avg_tr_lv:.4e}) "
+              f"Phys={avg_tr_phys:.4e} Tmp={avg_tr_temp:.4e} | "
+              f"Val MSE Loss={avg_va_loss:.4e} | EVAL: θ-RMSE={avg_th_rmse:.3f}°, |V|-RMSE={avg_vm_rmse:.4f} | "
+              f"LR: {current_lr:.2e}")
 
-        # (可选) WandB 日志
         if wandb_run:
             log_data = {
                 "epoch": epoch,
                 "train_loss_mse": avg_tr_loss,
-                # "train_loss_theta": avg_tr_lth, # 可选
-                # "train_loss_vm": avg_tr_lv,     # 可选
                 "train_loss_phys": avg_tr_phys,
                 "train_loss_temp": avg_tr_temp,
                 "val_loss_mse": avg_va_loss,
@@ -343,7 +338,8 @@ def main():
                 "val_rmse_vm_pu": avg_vm_rmse,
                 "learning_rate": current_lr
             }
-            log_data_filtered = {k: v for k, v in log_data.items() if not (isinstance(v, float) and np.isnan(v))}
+            log_data_filtered = {k: v for k, v in log_data.items()
+                                 if not (isinstance(v, float) and np.isnan(v))}
             wandb_run.log(log_data_filtered)
 
 
@@ -374,7 +370,6 @@ def main():
     print("\n--- Training Finished ---")
     print(f"Loading best model from epoch {wandb_run.summary.get('best_epoch', 'N/A') if wandb_run else 'N/A'} with Val MSE Loss: {best_va_loss:.4e}")
 
-    # 加载最佳模型
     best_model_path = os.path.join(args.save_dir, f"tagru_residual_r_best_{args.tag}.pt")
     if os.path.exists(best_model_path):
         try:
@@ -395,13 +390,15 @@ def main():
                     E     = batch["E_time"].to(args.device) if "E_time" in batch else None
                     x_gt  = batch["x"].to(args.device)
                     try:
-                        x_hat = model(r, x_wls, feat, A_time=A, E_time=E)
-                    except TypeError as e:
-                        print(f"\n错误: 调用 model.forward (测试) 时参数不匹配: {e}")
+                        # 仅传入 (r, feat) 以匹配模型签名
+                        x_hat = model(r, feat, A_time=A, E_time=E)
+                    except (TypeError, AttributeError) as e:
+                        print(f"\n错误: 调用 model.forward (测试) 时参数不匹配或内部错误: {e}")
                         continue
 
-                    th_rmse, vm_rmse = rmse_metrics(x_hat, x_gt, state_order='vm_va') # 假设 vm_va
+                    th_rmse, vm_rmse = rmse_metrics(x_hat, x_gt, state_order='vm_va')
                     test_ths.append(th_rmse); test_vms.append(vm_rmse)
+
 
             avg_test_th_rmse = np.nanmean(test_ths) if test_ths else float('nan')
             avg_test_vm_rmse = np.nanmean(test_vms) if test_vms else float('nan')
