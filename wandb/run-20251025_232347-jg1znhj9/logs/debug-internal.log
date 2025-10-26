@@ -1,0 +1,9 @@
+{"time":"2025-10-25T23:23:47.881261273+08:00","level":"INFO","msg":"stream: starting","core version":"0.22.2"}
+{"time":"2025-10-25T23:23:48.888609881+08:00","level":"INFO","msg":"stream: created new stream","id":"jg1znhj9"}
+{"time":"2025-10-25T23:23:48.888843488+08:00","level":"INFO","msg":"handler: started","stream_id":"jg1znhj9"}
+{"time":"2025-10-25T23:23:48.888923101+08:00","level":"INFO","msg":"stream: started","id":"jg1znhj9"}
+{"time":"2025-10-25T23:23:48.888937282+08:00","level":"INFO","msg":"writer: started","stream_id":"jg1znhj9"}
+{"time":"2025-10-25T23:23:48.888949506+08:00","level":"INFO","msg":"sender: started","stream_id":"jg1znhj9"}
+{"time":"2025-10-25T23:24:01.619606404+08:00","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"updating run metadata","runtime_seconds":0.000728501}],"total_operations":1}}
+{"time":"2025-10-25T23:24:03.831407436+08:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-10-25T23:25:01.664629205+08:00","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"uploading history steps 0-59, summary, console lines 0-141","runtime_seconds":57.817822147}],"total_operations":1}}

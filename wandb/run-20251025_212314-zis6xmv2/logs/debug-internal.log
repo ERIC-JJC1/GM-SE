@@ -1,0 +1,12 @@
+{"time":"2025-10-25T21:23:14.570991529+08:00","level":"INFO","msg":"stream: starting","core version":"0.22.2"}
+{"time":"2025-10-25T21:23:15.337176259+08:00","level":"INFO","msg":"stream: created new stream","id":"zis6xmv2"}
+{"time":"2025-10-25T21:23:15.337420511+08:00","level":"INFO","msg":"handler: started","stream_id":"zis6xmv2"}
+{"time":"2025-10-25T21:23:15.337461578+08:00","level":"INFO","msg":"stream: started","id":"zis6xmv2"}
+{"time":"2025-10-25T21:23:15.337495538+08:00","level":"INFO","msg":"sender: started","stream_id":"zis6xmv2"}
+{"time":"2025-10-25T21:23:15.337500964+08:00","level":"INFO","msg":"writer: started","stream_id":"zis6xmv2"}
+{"time":"2025-10-25T21:23:27.022674266+08:00","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"updating run metadata","runtime_seconds":0.000519298}],"total_operations":1}}
+{"time":"2025-10-25T21:23:29.844325031+08:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-10-25T21:23:30.85382749+08:00","level":"INFO","msg":"stream: closing","id":"zis6xmv2"}
+{"time":"2025-10-25T21:23:30.85385018+08:00","level":"INFO","msg":"handler: closed","stream_id":"zis6xmv2"}
+{"time":"2025-10-25T21:23:30.853943892+08:00","level":"INFO","msg":"sender: closed","stream_id":"zis6xmv2"}
+{"time":"2025-10-25T21:23:30.853956217+08:00","level":"INFO","msg":"stream: closed","id":"zis6xmv2"}

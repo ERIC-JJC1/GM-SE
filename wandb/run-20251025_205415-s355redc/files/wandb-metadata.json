@@ -1,0 +1,36 @@
+{
+  "os": "Linux-5.15.0-139-generic-x86_64-with-glibc2.31",
+  "python": "CPython 3.10.18",
+  "startedAt": "2025-10-25T12:54:15.019080Z",
+  "args": [
+    "--alpha=1.117259027702002",
+    "--batch_size=16",
+    "--beta=7.127210982460829",
+    "--data_dir=data/windows_ieee33",
+    "--device=cuda",
+    "--dropout=0",
+    "--epochs=60",
+    "--gnn_hidden=64",
+    "--gnn_layers=2",
+    "--hidden_dim=256",
+    "--lambda_op=0.1",
+    "--lr=0.0005",
+    "--num_layers=2",
+    "--save_dir=checkpoints",
+    "--tag=W96",
+    "--wandb_project=GridSE_PGR",
+    "--weight_decay=0"
+  ],
+  "program": "/home/wzseu/JJC_project/wls_33/train/train_pgr_hybrid.py",
+  "codePath": "train/train_pgr_hybrid.py",
+  "codePathLocal": "train/train_pgr_hybrid.py",
+  "git": {
+    "remote": "https://github.com/ERIC-JJC1/GM-SE.git",
+    "commit": "63968637aab0637ec7e2986a758e800fd317e2c4"
+  },
+  "email": "a530029885@gmail.com",
+  "root": "/home/wzseu/JJC_project/wls_33",
+  "host": "wzseu-Z790-EAGLE-AX",
+  "executable": "/home/wzseu/anaconda3/envs/jjc_gm/bin/python",
+  "writerId": "zqi1leb8wyvuj3khyus7imuug8ur914b"
+}

@@ -1,0 +1,36 @@
+wandb_version: 1
+
+alpha:
+  value: 0.9345526424193564
+batch_size:
+  value: 32
+beta:
+  value: 13.33533204246797
+data_dir:
+  value: data/windows_ieee33
+device:
+  value: cuda
+dropout:
+  value: 0.2
+epochs:
+  value: 60
+gnn_hidden:
+  value: 128
+gnn_layers:
+  value: 3
+hidden_dim:
+  value: 128
+lambda_op:
+  value: 1
+lr:
+  value: 0.001
+num_layers:
+  value: 3
+save_dir:
+  value: checkpoints
+tag:
+  value: W96
+wandb_project:
+  value: GridSE_PGR
+weight_decay:
+  value: 0.0001

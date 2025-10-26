@@ -1,0 +1,66 @@
+{
+  "os": "Linux-5.15.0-139-generic-x86_64-with-glibc2.31",
+  "python": "CPython 3.10.18",
+  "startedAt": "2025-10-25T16:10:33.270208Z",
+  "args": [
+    "--alpha=0.9329294585609582",
+    "--batch_size=16",
+    "--beta=12.000315884425309",
+    "--data_dir=data/windows_ieee33",
+    "--device=cuda",
+    "--dropout=0.2",
+    "--epochs=60",
+    "--gnn_hidden=128",
+    "--gnn_layers=3",
+    "--hidden_dim=256",
+    "--lambda_op=1",
+    "--lr=0.001",
+    "--num_layers=3",
+    "--save_dir=checkpoints",
+    "--tag=W96",
+    "--wandb_project=GridSE_PGR",
+    "--weight_decay=1e-05"
+  ],
+  "program": "/home/wzseu/JJC_project/wls_33/train/train_pgr_hybrid.py",
+  "codePath": "train/train_pgr_hybrid.py",
+  "codePathLocal": "train/train_pgr_hybrid.py",
+  "git": {
+    "remote": "https://github.com/ERIC-JJC1/GM-SE.git",
+    "commit": "63968637aab0637ec7e2986a758e800fd317e2c4"
+  },
+  "email": "a530029885@gmail.com",
+  "root": "/home/wzseu/JJC_project/wls_33",
+  "host": "wzseu-Z790-EAGLE-AX",
+  "executable": "/home/wzseu/anaconda3/envs/jjc_gm/bin/python",
+  "cpu_count": 24,
+  "cpu_count_logical": 32,
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "gpu_count": 2,
+  "disk": {
+    "/": {
+      "total": "1967317549056",
+      "used": "119162044416"
+    }
+  },
+  "memory": {
+    "total": "202431541248"
+  },
+  "gpu_nvidia": [
+    {
+      "name": "NVIDIA GeForce RTX 4090",
+      "memoryTotal": "25757220864",
+      "cudaCores": 16384,
+      "architecture": "Ada",
+      "uuid": "GPU-df9f4d1d-c942-2049-c297-2b04f2cbaa13"
+    },
+    {
+      "name": "NVIDIA GeForce RTX 4090",
+      "memoryTotal": "25757220864",
+      "cudaCores": 16384,
+      "architecture": "Ada",
+      "uuid": "GPU-710f46d9-de5e-0b0d-2c9b-8e9ea520a688"
+    }
+  ],
+  "cudaVersion": "12.8",
+  "writerId": "m1obydmq0rw8kyuad8c428wddb0fbz2v"
+}

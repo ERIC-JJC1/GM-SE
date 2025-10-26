@@ -1,0 +1,12 @@
+{"time":"2025-10-25T22:42:07.756761119+08:00","level":"INFO","msg":"stream: starting","core version":"0.22.2"}
+{"time":"2025-10-25T22:42:08.445951724+08:00","level":"INFO","msg":"stream: created new stream","id":"cytrbrn4"}
+{"time":"2025-10-25T22:42:08.446050947+08:00","level":"INFO","msg":"stream: started","id":"cytrbrn4"}
+{"time":"2025-10-25T22:42:08.446062633+08:00","level":"INFO","msg":"writer: started","stream_id":"cytrbrn4"}
+{"time":"2025-10-25T22:42:08.446099762+08:00","level":"INFO","msg":"handler: started","stream_id":"cytrbrn4"}
+{"time":"2025-10-25T22:42:08.446117082+08:00","level":"INFO","msg":"sender: started","stream_id":"cytrbrn4"}
+{"time":"2025-10-25T22:42:15.762819479+08:00","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"updating run metadata","runtime_seconds":0.000718019}],"total_operations":1}}
+{"time":"2025-10-25T22:42:16.880891366+08:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-10-25T22:42:17.924292936+08:00","level":"INFO","msg":"stream: closing","id":"cytrbrn4"}
+{"time":"2025-10-25T22:42:17.924304472+08:00","level":"INFO","msg":"handler: closed","stream_id":"cytrbrn4"}
+{"time":"2025-10-25T22:42:17.924340319+08:00","level":"INFO","msg":"sender: closed","stream_id":"cytrbrn4"}
+{"time":"2025-10-25T22:42:17.924342663+08:00","level":"INFO","msg":"stream: closed","id":"cytrbrn4"}

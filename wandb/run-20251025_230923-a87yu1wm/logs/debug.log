@@ -1,0 +1,27 @@
+2025-10-25 23:09:23,421 INFO    MainThread:1041150 [wandb_setup.py:_flush():81] Current SDK version is 0.22.2
+2025-10-25 23:09:23,421 INFO    MainThread:1041150 [wandb_setup.py:_flush():81] Configure stats pid to 1041150
+2025-10-25 23:09:23,421 INFO    MainThread:1041150 [wandb_setup.py:_flush():81] Loading settings from /home/wzseu/.config/wandb/settings
+2025-10-25 23:09:23,421 INFO    MainThread:1041150 [wandb_setup.py:_flush():81] Loading settings from /home/wzseu/JJC_project/wls_33/wandb/settings
+2025-10-25 23:09:23,421 INFO    MainThread:1041150 [wandb_setup.py:_flush():81] Loading settings from environment variables
+2025-10-25 23:09:23,421 INFO    MainThread:1041150 [wandb_init.py:setup_run_log_directory():705] Logging user logs to /home/wzseu/JJC_project/wls_33/wandb/run-20251025_230923-a87yu1wm/logs/debug.log
+2025-10-25 23:09:23,421 INFO    MainThread:1041150 [wandb_init.py:setup_run_log_directory():706] Logging internal logs to /home/wzseu/JJC_project/wls_33/wandb/run-20251025_230923-a87yu1wm/logs/debug-internal.log
+2025-10-25 23:09:23,421 INFO    MainThread:1041150 [wandb_init.py:init():832] calling init triggers
+2025-10-25 23:09:23,421 INFO    MainThread:1041150 [wandb_init.py:init():837] wandb.init called with sweep_config: {'batch_size': 16, 'data_dir': 'data/windows_ieee33', 'device': 'cuda', 'epochs': 60, 'gnn_hidden': 128, 'gnn_layers': 3, 'hidden_dim': 256, 'lr': 0.001, 'nhead': 8, 'num_layers': 2, 'save_dir': 'checkpoints', 'seed': 42, 'tag': 'W24', 'use_gnn': False, 'wandb_project': 'GridSE_RefineSeq'}
+config: {'batch_size': 16, 'data_dir': 'data/windows_ieee33', 'epochs': 60, 'hidden_dim': 256, 'lr': 0.001, 'num_layers': 2, 'tag': 'W24', 'nhead': 8, 'bias_scale': 3.0, 'use_mask': False, 'device': 'cuda', 'lambda_phys': 0.0, 'w_temp_th': 0.0, 'w_temp_vm': 0.0, 'use_bus_smooth': True, 'use_gnn': False, 'gnn_type': 'tag', 'gnn_hidden': [128], 'gnn_layers': [3], 'gnn_dropout': [0.0], 'wandb_project': 'GridSE_RefineSeq', 'save_dir': 'checkpoints', 'seed': 42, 'num_workers': 0, '_wandb': {}}
+2025-10-25 23:09:23,421 INFO    MainThread:1041150 [wandb_init.py:init():880] starting backend
+2025-10-25 23:09:23,625 INFO    MainThread:1041150 [wandb_init.py:init():883] sending inform_init request
+2025-10-25 23:09:23,631 INFO    MainThread:1041150 [wandb_init.py:init():891] backend started and connected
+2025-10-25 23:09:23,632 INFO    MainThread:1041150 [wandb_run.py:_config_callback():1392] config_cb None None {'batch_size': 16, 'data_dir': 'data/windows_ieee33', 'device': 'cuda', 'epochs': 60, 'gnn_hidden': 128, 'gnn_layers': 3, 'hidden_dim': 256, 'lr': 0.001, 'nhead': 8, 'num_layers': 2, 'save_dir': 'checkpoints', 'seed': 42, 'tag': 'W24', 'use_gnn': False, 'wandb_project': 'GridSE_RefineSeq'}
+2025-10-25 23:09:23,633 INFO    MainThread:1041150 [wandb_init.py:init():961] updated telemetry
+2025-10-25 23:09:23,637 INFO    MainThread:1041150 [wandb_init.py:init():985] communicating run to backend with 90.0 second timeout
+2025-10-25 23:09:24,975 INFO    MainThread:1041150 [wandb_init.py:init():1036] starting run threads in backend
+2025-10-25 23:09:25,010 INFO    MainThread:1041150 [wandb_run.py:_console_start():2509] atexit reg
+2025-10-25 23:09:25,010 INFO    MainThread:1041150 [wandb_run.py:_redirect():2357] redirect: wrap_raw
+2025-10-25 23:09:25,011 INFO    MainThread:1041150 [wandb_run.py:_redirect():2426] Wrapping output streams.
+2025-10-25 23:09:25,011 INFO    MainThread:1041150 [wandb_run.py:_redirect():2449] Redirects installed.
+2025-10-25 23:09:25,012 INFO    MainThread:1041150 [wandb_init.py:init():1076] run started, returning control to user process
+2025-10-25 23:09:28,176 INFO    MainThread:1041150 [wandb_run.py:_finish():2275] finishing run a530029885-southeast-university/GridSE_Refine_seq/a87yu1wm
+2025-10-25 23:09:28,176 INFO    MainThread:1041150 [wandb_run.py:_atexit_cleanup():2474] got exitcode: 0
+2025-10-25 23:09:28,176 INFO    MainThread:1041150 [wandb_run.py:_restore():2456] restore
+2025-10-25 23:09:28,176 INFO    MainThread:1041150 [wandb_run.py:_restore():2462] restore done
+2025-10-25 23:09:30,846 INFO    MainThread:1041150 [wandb_run.py:_footer_sync_info():3872] logging synced files

@@ -1,0 +1,12 @@
+{"time":"2025-10-25T21:39:30.227984832+08:00","level":"INFO","msg":"stream: starting","core version":"0.22.2"}
+{"time":"2025-10-25T21:39:31.328002378+08:00","level":"INFO","msg":"stream: created new stream","id":"ytpaxpxf"}
+{"time":"2025-10-25T21:39:31.328028816+08:00","level":"INFO","msg":"handler: started","stream_id":"ytpaxpxf"}
+{"time":"2025-10-25T21:39:31.328072918+08:00","level":"INFO","msg":"stream: started","id":"ytpaxpxf"}
+{"time":"2025-10-25T21:39:31.328130076+08:00","level":"INFO","msg":"sender: started","stream_id":"ytpaxpxf"}
+{"time":"2025-10-25T21:39:31.328145791+08:00","level":"INFO","msg":"writer: started","stream_id":"ytpaxpxf"}
+{"time":"2025-10-25T21:39:36.610377087+08:00","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"updating run metadata","runtime_seconds":5.003788342}],"total_operations":1}}
+{"time":"2025-10-25T21:39:37.948210166+08:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-10-25T21:39:39.186191165+08:00","level":"INFO","msg":"stream: closing","id":"ytpaxpxf"}
+{"time":"2025-10-25T21:39:39.18621086+08:00","level":"INFO","msg":"handler: closed","stream_id":"ytpaxpxf"}
+{"time":"2025-10-25T21:39:39.186320119+08:00","level":"INFO","msg":"sender: closed","stream_id":"ytpaxpxf"}
+{"time":"2025-10-25T21:39:39.186332315+08:00","level":"INFO","msg":"stream: closed","id":"ytpaxpxf"}

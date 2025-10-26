@@ -110,6 +110,18 @@ def make_loader(npz_path, batch_size, input_mode="whiten", shuffle=False, num_wo
     dims = {'S': S, 'F': F, 'M_input': M_input, 'M_z': M_z, 'Nbus': Nbus, 'slack_pos': slack_pos_val}
     return dl, dims
 
+
+def str2bool(v):
+    if isinstance(v, bool):
+       return v
+    if v.lower() in ('yes', 'true', 't', 'y', '1'):
+        return True
+    elif v.lower() in ('no', 'false', 'f', 'n', '0'):
+        return False
+    else:
+        raise argparse.ArgumentTypeError('Boolean value expected.')
+    
+    
 def main():
     # --- 1. 参数解析 ---
     ap = argparse.ArgumentParser(description="Train TAGRU Residual Model (Input: r)")
@@ -128,7 +140,8 @@ def main():
     # 注意力超参 (暂时保留)
     ap.add_argument("--nhead", type=int, default=4)
     ap.add_argument("--bias_scale", type=float, default=3.0)
-    ap.add_argument("--use_mask", action="store_true", default=False)
+    ap.add_argument("--use_mask", type=str2bool, nargs='?', const=True, default=False,
+                        help="Enable temporal mask in attention (default: False)")
 
     ap.add_argument("--device", type=str, default="cuda" if torch.cuda.is_available() else "cpu")
 

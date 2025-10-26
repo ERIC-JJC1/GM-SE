@@ -1,0 +1,12 @@
+{"time":"2025-10-25T21:03:16.660225094+08:00","level":"INFO","msg":"stream: starting","core version":"0.22.2"}
+{"time":"2025-10-25T21:03:17.374550181+08:00","level":"INFO","msg":"stream: created new stream","id":"hs2t542q"}
+{"time":"2025-10-25T21:03:17.374646404+08:00","level":"INFO","msg":"stream: started","id":"hs2t542q"}
+{"time":"2025-10-25T21:03:17.374662413+08:00","level":"INFO","msg":"handler: started","stream_id":"hs2t542q"}
+{"time":"2025-10-25T21:03:17.374690907+08:00","level":"INFO","msg":"writer: started","stream_id":"hs2t542q"}
+{"time":"2025-10-25T21:03:17.374696723+08:00","level":"INFO","msg":"sender: started","stream_id":"hs2t542q"}
+{"time":"2025-10-25T21:03:30.305710312+08:00","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"updating run metadata","runtime_seconds":0.000860291}],"total_operations":1}}
+{"time":"2025-10-25T21:03:31.638584869+08:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-10-25T21:03:33.411644894+08:00","level":"INFO","msg":"stream: closing","id":"hs2t542q"}
+{"time":"2025-10-25T21:03:33.41165136+08:00","level":"INFO","msg":"handler: closed","stream_id":"hs2t542q"}
+{"time":"2025-10-25T21:03:33.411678504+08:00","level":"INFO","msg":"sender: closed","stream_id":"hs2t542q"}
+{"time":"2025-10-25T21:03:33.41168901+08:00","level":"INFO","msg":"stream: closed","id":"hs2t542q"}

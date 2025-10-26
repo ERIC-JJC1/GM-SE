@@ -1,0 +1,111 @@
+                                                                                                                                                                                                                                         
+[Epoch 001] Train Loss: 3.8763e+01 (Phys: 1.4062e+01, MSE: 1.6043e+00) | Val MSE Loss: 1.4267e+00 | Val RMSE: θ=48.389°, V=0.01348 | LR: 5.00e-04
+   => Validation loss improved to 1.4267e+00 at epoch 1. Saving model...
+   => Best model saved to checkpoints/pgr_hybrid_best_W24_seed42.pt
+[Epoch 002] Train Loss: 2.9158e+01 (Phys: 1.1480e+01, MSE: 1.0349e+00) | Val MSE Loss: 1.9258e-01 | Val RMSE: θ=17.584°, V=0.06460 | LR: 5.00e-04
+   => Validation loss improved to 1.9258e-01 at epoch 2. Saving model...
+   => Best model saved to checkpoints/pgr_hybrid_best_W24_seed42.pt
+[Epoch 003] Train Loss: 2.1506e+01 (Phys: 1.0335e+01, MSE: 4.0739e-01) | Val MSE Loss: 4.3714e-01 | Val RMSE: θ=26.698°, V=0.05360 | LR: 5.00e-04
+[Epoch 004] Train Loss: 1.7805e+01 (Phys: 9.5175e+00, MSE: 1.5428e-01) | Val MSE Loss: 1.2532e-01 | Val RMSE: θ=14.243°, V=0.04114 | LR: 5.00e-04
+   => Validation loss improved to 1.2532e-01 at epoch 4. Saving model...
+   => Best model saved to checkpoints/pgr_hybrid_best_W24_seed42.pt
+[Epoch 005] Train Loss: 1.6891e+01 (Phys: 9.1096e+00, MSE: 1.3094e-01) | Val MSE Loss: 4.9108e-02 | Val RMSE: θ=8.914°, V=0.02500 | LR: 5.00e-04
+   => Validation loss improved to 4.9108e-02 at epoch 5. Saving model...
+   => Best model saved to checkpoints/pgr_hybrid_best_W24_seed42.pt
+[Epoch 006] Train Loss: 1.5844e+01 (Phys: 8.8724e+00, MSE: 6.0399e-02) | Val MSE Loss: 1.4733e-01 | Val RMSE: θ=15.515°, V=0.02622 | LR: 5.00e-04
+[Epoch 007] Train Loss: 1.3014e+01 (Phys: 6.5059e+00, MSE: 1.9856e-01) | Val MSE Loss: 2.3365e-01 | Val RMSE: θ=19.570°, V=0.01776 | LR: 5.00e-04
+[Epoch 008] Train Loss: 1.2699e+01 (Phys: 6.5503e+00, MSE: 1.5532e-01) | Val MSE Loss: 7.0854e-02 | Val RMSE: θ=10.761°, V=0.01723 | LR: 5.00e-04
+[Epoch 009] Train Loss: 1.1237e+01 (Phys: 6.2430e+00, MSE: 5.2248e-02) | Val MSE Loss: 4.6901e-02 | Val RMSE: θ=8.672°, V=0.03242 | LR: 5.00e-04
+   => Validation loss improved to 4.6901e-02 at epoch 9. Saving model...
+   => Best model saved to checkpoints/pgr_hybrid_best_W24_seed42.pt
+[Epoch 010] Train Loss: 1.0662e+01 (Phys: 5.9053e+00, MSE: 5.3058e-02) | Val MSE Loss: 6.3798e-02 | Val RMSE: θ=10.216°, V=0.01397 | LR: 5.00e-04
+[Epoch 011] Train Loss: 8.3169e+00 (Phys: 4.5384e+00, MSE: 5.4386e-02) | Val MSE Loss: 4.2025e-02 | Val RMSE: θ=8.289°, V=0.01122 | LR: 5.00e-04
+   => Validation loss improved to 4.2025e-02 at epoch 11. Saving model...
+   => Best model saved to checkpoints/pgr_hybrid_best_W24_seed42.pt
+[Epoch 012] Train Loss: 7.1190e+00 (Phys: 3.8995e+00, MSE: 4.3732e-02) | Val MSE Loss: 3.1251e-02 | Val RMSE: θ=7.140°, V=0.01173 | LR: 5.00e-04
+   => Validation loss improved to 3.1251e-02 at epoch 12. Saving model...
+   => Best model saved to checkpoints/pgr_hybrid_best_W24_seed42.pt
+[Epoch 013] Train Loss: 5.7720e+00 (Phys: 3.1758e+00, MSE: 3.2758e-02) | Val MSE Loss: 2.3474e-02 | Val RMSE: θ=6.154°, V=0.01891 | LR: 5.00e-04
+   => Validation loss improved to 2.3474e-02 at epoch 13. Saving model...
+   => Best model saved to checkpoints/pgr_hybrid_best_W24_seed42.pt
+[Epoch 014] Train Loss: 5.2086e+00 (Phys: 2.8982e+00, MSE: 2.3392e-02) | Val MSE Loss: 1.6567e-02 | Val RMSE: θ=5.189°, V=0.01101 | LR: 5.00e-04
+   => Validation loss improved to 1.6567e-02 at epoch 14. Saving model...
+   => Best model saved to checkpoints/pgr_hybrid_best_W24_seed42.pt
+[Epoch 015] Train Loss: 4.6408e+00 (Phys: 2.6109e+00, MSE: 1.5397e-02) | Val MSE Loss: 1.1120e-02 | Val RMSE: θ=4.127°, V=0.02680 | LR: 5.00e-04
+   => Validation loss improved to 1.1120e-02 at epoch 15. Saving model...
+   => Best model saved to checkpoints/pgr_hybrid_best_W24_seed42.pt
+[Epoch 016] Train Loss: 4.2319e+00 (Phys: 2.3937e+00, MSE: 1.1589e-02) | Val MSE Loss: 1.0357e-02 | Val RMSE: θ=3.952°, V=0.02888 | LR: 5.00e-04
+   => Validation loss improved to 1.0357e-02 at epoch 16. Saving model...
+   => Best model saved to checkpoints/pgr_hybrid_best_W24_seed42.pt
+[Epoch 017] Train Loss: 3.8140e+00 (Phys: 2.1643e+00, MSE: 9.1147e-03) | Val MSE Loss: 5.3772e-03 | Val RMSE: θ=2.901°, V=0.01484 | LR: 5.00e-04
+   => Validation loss improved to 5.3772e-03 at epoch 17. Saving model...
+   => Best model saved to checkpoints/pgr_hybrid_best_W24_seed42.pt
+[Epoch 018] Train Loss: 3.4959e+00 (Phys: 1.9843e+00, MSE: 8.2600e-03) | Val MSE Loss: 4.5179e-03 | Val RMSE: θ=2.659°, V=0.01343 | LR: 5.00e-04
+   => Validation loss improved to 4.5179e-03 at epoch 18. Saving model...
+   => Best model saved to checkpoints/pgr_hybrid_best_W24_seed42.pt
+[Epoch 019] Train Loss: 2.9894e+00 (Phys: 1.7074e+00, MSE: 5.0470e-03) | Val MSE Loss: 9.0974e-03 | Val RMSE: θ=3.798°, V=0.01758 | LR: 5.00e-04
+[Epoch 020] Train Loss: 3.0121e+00 (Phys: 1.7154e+00, MSE: 6.0222e-03) | Val MSE Loss: 4.8357e-03 | Val RMSE: θ=2.770°, V=0.01257 | LR: 5.00e-04
+[Epoch 021] Train Loss: 2.7375e+00 (Phys: 1.5627e+00, MSE: 4.7739e-03) | Val MSE Loss: 4.8172e-03 | Val RMSE: θ=2.753°, V=0.01333 | LR: 5.00e-04
+[Epoch 022] Train Loss: 2.9211e+00 (Phys: 1.6659e+00, MSE: 5.3973e-03) | Val MSE Loss: 3.9971e-03 | Val RMSE: θ=2.463°, V=0.01677 | LR: 5.00e-04
+   => Validation loss improved to 3.9971e-03 at epoch 22. Saving model...
+   => Best model saved to checkpoints/pgr_hybrid_best_W24_seed42.pt
+[Epoch 023] Train Loss: 2.9197e+00 (Phys: 1.6616e+00, MSE: 6.0646e-03) | Val MSE Loss: 6.3783e-03 | Val RMSE: θ=3.195°, V=0.01259 | LR: 5.00e-04
+[Epoch 024] Train Loss: 2.6550e+00 (Phys: 1.5121e+00, MSE: 5.2887e-03) | Val MSE Loss: 6.0212e-03 | Val RMSE: θ=3.085°, V=0.01492 | LR: 5.00e-04
+[Epoch 025] Train Loss: 2.5486e+00 (Phys: 1.4510e+00, MSE: 5.1870e-03) | Val MSE Loss: 4.2211e-03 | Val RMSE: θ=2.582°, V=0.01195 | LR: 5.00e-04
+[Epoch 026] Train Loss: 2.4733e+00 (Phys: 1.4108e+00, MSE: 4.5205e-03) | Val MSE Loss: 3.7877e-03 | Val RMSE: θ=2.431°, V=0.01319 | LR: 5.00e-04
+   => Validation loss improved to 3.7877e-03 at epoch 26. Saving model...
+   => Best model saved to checkpoints/pgr_hybrid_best_W24_seed42.pt
+[Epoch 027] Train Loss: 2.7670e+00 (Phys: 1.5798e+00, MSE: 4.7829e-03) | Val MSE Loss: 9.3806e-03 | Val RMSE: θ=3.893°, V=0.01173 | LR: 5.00e-04
+[Epoch 028] Train Loss: 3.3725e+00 (Phys: 1.8924e+00, MSE: 1.2136e-02) | Val MSE Loss: 1.2532e-02 | Val RMSE: θ=4.499°, V=0.01408 | LR: 5.00e-04
+[Epoch 029] Train Loss: 2.8371e+00 (Phys: 1.6105e+00, MSE: 6.6704e-03) | Val MSE Loss: 1.2666e-02 | Val RMSE: θ=4.534°, V=0.01184 | LR: 5.00e-04
+[Epoch 030] Train Loss: 3.1072e+00 (Phys: 1.7414e+00, MSE: 1.1589e-02) | Val MSE Loss: 3.7458e-03 | Val RMSE: θ=2.427°, V=0.01245 | LR: 5.00e-04
+   => Validation loss improved to 3.7458e-03 at epoch 30. Saving model...
+   => Best model saved to checkpoints/pgr_hybrid_best_W24_seed42.pt
+[Epoch 031] Train Loss: 2.6833e+00 (Phys: 1.5259e+00, MSE: 5.7933e-03) | Val MSE Loss: 3.2119e-03 | Val RMSE: θ=2.202°, V=0.01589 | LR: 5.00e-04
+   => Validation loss improved to 3.2119e-03 at epoch 31. Saving model...
+   => Best model saved to checkpoints/pgr_hybrid_best_W24_seed42.pt
+[Epoch 032] Train Loss: 2.9367e+00 (Phys: 1.6561e+00, MSE: 8.9871e-03) | Val MSE Loss: 4.3931e-03 | Val RMSE: θ=2.636°, V=0.01239 | LR: 5.00e-04
+[Epoch 033] Train Loss: 2.5256e+00 (Phys: 1.4446e+00, MSE: 3.8548e-03) | Val MSE Loss: 3.5688e-03 | Val RMSE: θ=2.375°, V=0.01133 | LR: 5.00e-04
+[Epoch 034] Train Loss: 2.6357e+00 (Phys: 1.5141e+00, MSE: 2.7882e-03) | Val MSE Loss: 2.7261e-03 | Val RMSE: θ=2.052°, V=0.01257 | LR: 5.00e-04
+   => Validation loss improved to 2.7261e-03 at epoch 34. Saving model...
+   => Best model saved to checkpoints/pgr_hybrid_best_W24_seed42.pt
+[Epoch 035] Train Loss: 2.5717e+00 (Phys: 1.4759e+00, MSE: 2.9815e-03) | Val MSE Loss: 3.6254e-03 | Val RMSE: θ=2.396°, V=0.01122 | LR: 5.00e-04
+[Epoch 036] Train Loss: 2.5340e+00 (Phys: 1.4517e+00, MSE: 3.4271e-03) | Val MSE Loss: 3.3495e-03 | Val RMSE: θ=2.263°, V=0.01512 | LR: 5.00e-04
+[Epoch 037] Train Loss: 2.4529e+00 (Phys: 1.4051e+00, MSE: 3.3426e-03) | Val MSE Loss: 3.5807e-03 | Val RMSE: θ=2.378°, V=0.01154 | LR: 5.00e-04
+[Epoch 038] Train Loss: 2.5985e+00 (Phys: 1.4921e+00, MSE: 2.8592e-03) | Val MSE Loss: 3.0061e-03 | Val RMSE: θ=2.158°, V=0.01297 | LR: 5.00e-04
+[Epoch 039] Train Loss: 2.4449e+00 (Phys: 1.4041e+00, MSE: 2.6621e-03) | Val MSE Loss: 3.9156e-03 | Val RMSE: θ=2.494°, V=0.01118 | LR: 5.00e-04
+[Epoch 040] Train Loss: 2.4573e+00 (Phys: 1.4076e+00, MSE: 3.3626e-03) | Val MSE Loss: 3.8629e-03 | Val RMSE: θ=2.466°, V=0.01248 | LR: 5.00e-04
+[Epoch 041] Train Loss: 2.4181e+00 (Phys: 1.3850e+00, MSE: 3.3356e-03) | Val MSE Loss: 3.1875e-03 | Val RMSE: θ=2.239°, V=0.01155 | LR: 5.00e-04
+[Epoch 042] Train Loss: 2.3391e+00 (Phys: 1.3399e+00, MSE: 3.2098e-03) | Val MSE Loss: 4.4510e-03 | Val RMSE: θ=2.660°, V=0.01174 | LR: 5.00e-04
+[Epoch 043] Train Loss: 2.2717e+00 (Phys: 1.3017e+00, MSE: 3.0291e-03) | Val MSE Loss: 4.1549e-03 | Val RMSE: θ=2.570°, V=0.01144 | LR: 5.00e-04
+[Epoch 044] Train Loss: 2.4683e+00 (Phys: 1.4111e+00, MSE: 3.9113e-03) | Val MSE Loss: 2.9407e-03 | Val RMSE: θ=2.149°, V=0.01124 | LR: 5.00e-04
+[Epoch 045] Train Loss: 2.3810e+00 (Phys: 1.3670e+00, MSE: 2.6655e-03) | Val MSE Loss: 3.4395e-03 | Val RMSE: θ=2.326°, V=0.01189 | LR: 2.50e-04
+[Epoch 046] Train Loss: 2.2473e+00 (Phys: 1.2899e+00, MSE: 2.5748e-03) | Val MSE Loss: 3.0435e-03 | Val RMSE: θ=2.185°, V=0.01159 | LR: 2.50e-04
+[Epoch 047] Train Loss: 2.2263e+00 (Phys: 1.2776e+00, MSE: 2.6047e-03) | Val MSE Loss: 3.4556e-03 | Val RMSE: θ=2.334°, V=0.01167 | LR: 2.50e-04
+[Epoch 048] Train Loss: 2.3142e+00 (Phys: 1.3267e+00, MSE: 2.9534e-03) | Val MSE Loss: 2.7047e-03 | Val RMSE: θ=2.047°, V=0.01228 | LR: 2.50e-04
+   => Validation loss improved to 2.7047e-03 at epoch 48. Saving model...
+   => Best model saved to checkpoints/pgr_hybrid_best_W24_seed42.pt
+[Epoch 049] Train Loss: 2.2276e+00 (Phys: 1.2788e+00, MSE: 2.5144e-03) | Val MSE Loss: 2.7064e-03 | Val RMSE: θ=2.057°, V=0.01135 | LR: 2.50e-04
+[Epoch 050] Train Loss: 2.1799e+00 (Phys: 1.2518e+00, MSE: 2.3939e-03) | Val MSE Loss: 2.5699e-03 | Val RMSE: θ=1.996°, V=0.01195 | LR: 2.50e-04
+   => Validation loss improved to 2.5699e-03 at epoch 50. Saving model...
+   => Best model saved to checkpoints/pgr_hybrid_best_W24_seed42.pt
+[Epoch 051] Train Loss: 2.1368e+00 (Phys: 1.2267e+00, MSE: 2.4192e-03) | Val MSE Loss: 2.7926e-03 | Val RMSE: θ=2.089°, V=0.01150 | LR: 2.50e-04
+[Epoch 052] Train Loss: 2.0992e+00 (Phys: 1.2055e+00, MSE: 2.2980e-03) | Val MSE Loss: 2.9501e-03 | Val RMSE: θ=2.148°, V=0.01171 | LR: 2.50e-04
+[Epoch 053] Train Loss: 2.1877e+00 (Phys: 1.2543e+00, MSE: 2.7878e-03) | Val MSE Loss: 2.7128e-03 | Val RMSE: θ=2.056°, V=0.01168 | LR: 2.50e-04
+[Epoch 054] Train Loss: 2.2085e+00 (Phys: 1.2658e+00, MSE: 2.8877e-03) | Val MSE Loss: 4.2677e-03 | Val RMSE: θ=2.603°, V=0.01183 | LR: 2.50e-04
+[Epoch 055] Train Loss: 2.3236e+00 (Phys: 1.3275e+00, MSE: 3.8524e-03) | Val MSE Loss: 4.6988e-03 | Val RMSE: θ=2.739°, V=0.01125 | LR: 2.50e-04
+[Epoch 056] Train Loss: 2.2834e+00 (Phys: 1.3044e+00, MSE: 3.8080e-03) | Val MSE Loss: 2.5764e-03 | Val RMSE: θ=2.001°, V=0.01165 | LR: 2.50e-04
+[Epoch 057] Train Loss: 2.2210e+00 (Phys: 1.2715e+00, MSE: 3.1922e-03) | Val MSE Loss: 3.6195e-03 | Val RMSE: θ=2.390°, V=0.01178 | LR: 2.50e-04
+[Epoch 058] Train Loss: 2.1309e+00 (Phys: 1.2224e+00, MSE: 2.5770e-03) | Val MSE Loss: 2.7520e-03 | Val RMSE: θ=2.077°, V=0.01103 | LR: 2.50e-04
+[Epoch 059] Train Loss: 2.0780e+00 (Phys: 1.1935e+00, MSE: 2.2430e-03) | Val MSE Loss: 2.5579e-03 | Val RMSE: θ=1.994°, V=0.01161 | LR: 2.50e-04
+   => Validation loss improved to 2.5579e-03 at epoch 59. Saving model...
+   => Best model saved to checkpoints/pgr_hybrid_best_W24_seed42.pt
+[Epoch 060] Train Loss: 2.1111e+00 (Phys: 1.2109e+00, MSE: 2.5761e-03) | Val MSE Loss: 2.8337e-03 | Val RMSE: θ=2.105°, V=0.01154 | LR: 2.50e-04
+
+训练完成。最佳验证 MSE 损失: 2.5579e-03 在 epoch 59
+
+--- 开始测试集评估 ---
+State dict loaded successfully!
+成功加载并映射最佳模型: checkpoints/pgr_hybrid_best_W24_seed42.pt
+[TEST] 最佳模型评估结果: θ-RMSE=2.383°, |V|-RMSE=0.01388
+测试结果已记录到 WandB summary。

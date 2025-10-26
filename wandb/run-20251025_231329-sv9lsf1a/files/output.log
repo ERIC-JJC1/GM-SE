@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/home/wzseu/JJC_project/wls_33/train/train_pgr_hybrid.py", line 431, in <module>
+    main()
+  File "/home/wzseu/JJC_project/wls_33/train/train_pgr_hybrid.py", line 198, in main
+    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.5, patience=10, verbose=True)
+TypeError: ReduceLROnPlateau.__init__() got an unexpected keyword argument 'verbose'

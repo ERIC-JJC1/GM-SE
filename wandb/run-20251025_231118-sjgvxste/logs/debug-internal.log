@@ -1,0 +1,12 @@
+{"time":"2025-10-25T23:11:19.000506733+08:00","level":"INFO","msg":"stream: starting","core version":"0.22.2"}
+{"time":"2025-10-25T23:11:20.388993933+08:00","level":"INFO","msg":"stream: created new stream","id":"sjgvxste"}
+{"time":"2025-10-25T23:11:20.389217254+08:00","level":"INFO","msg":"stream: started","id":"sjgvxste"}
+{"time":"2025-10-25T23:11:20.389204301+08:00","level":"INFO","msg":"handler: started","stream_id":"sjgvxste"}
+{"time":"2025-10-25T23:11:20.389303777+08:00","level":"INFO","msg":"sender: started","stream_id":"sjgvxste"}
+{"time":"2025-10-25T23:11:20.389311098+08:00","level":"INFO","msg":"writer: started","stream_id":"sjgvxste"}
+{"time":"2025-10-25T23:11:22.610701902+08:00","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"updating run metadata","runtime_seconds":1.919731209},{"desc":"uploading wandb-metadata.json","runtime_seconds":0.20057412,"progress":"1.7KB/1.7KB"}],"total_operations":2}}
+{"time":"2025-10-25T23:11:24.109129014+08:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-10-25T23:11:25.140301286+08:00","level":"INFO","msg":"stream: closing","id":"sjgvxste"}
+{"time":"2025-10-25T23:11:25.140310821+08:00","level":"INFO","msg":"handler: closed","stream_id":"sjgvxste"}
+{"time":"2025-10-25T23:11:25.140366683+08:00","level":"INFO","msg":"sender: closed","stream_id":"sjgvxste"}
+{"time":"2025-10-25T23:11:25.140371675+08:00","level":"INFO","msg":"stream: closed","id":"sjgvxste"}

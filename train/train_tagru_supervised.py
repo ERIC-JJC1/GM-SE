@@ -164,7 +164,7 @@ def main():
     ap.add_argument("--nhead", type=int, default=4)
     ap.add_argument("--bias_scale", type=float, default=3.0)
     ap.add_argument("--use_mask", type=str2bool, nargs='?', const=True, default=False,
-                    help="是否启用时序注意力 Mask（默认 False）")
+                        help="Enable temporal mask in attention (default: False)")
 
     ap.add_argument("--device", type=str, default="cuda" if torch.cuda.is_available() else "cpu")
 
@@ -177,7 +177,9 @@ def main():
     ap.add_argument("--wandb_project", type=str, default=None, help="WandB 项目名称 (可选)")
     ap.add_argument("--save_dir", type=str, default="checkpoints", help="模型保存目录")
     ap.add_argument("--seed", type=int, default=42)
-
+    #----wandb参数--
+    ap.add_argument("--wandb_group", type=str, default=None, help="WandB group name (e.g., for grouping seeds)")
+    ap.add_argument("--wandb_name", type=str, default=None, help="WandB run name (overrides default naming)")
     args = ap.parse_args()
 
     # 设置随机种子
@@ -188,9 +190,12 @@ def main():
     if args.wandb_project:
         try:
             import wandb  # lazy import，保证可选
-            wandb_run = wandb.init(project=args.wandb_project, config=args)
-            run_name = f"tagru_supervised_h{args.hidden_dim}_l{args.num_layers}_lr{args.lr}_{args.tag}"
-            wandb_run.name = run_name
+            wandb_run = wandb.init(
+                project=args.wandb_project,
+                config=args,
+                group=args.wandb_group, # Pass group
+                name=args.wandb_name or f"tagru_sup_h{args.hidden_dim}_l{args.num_layers}_lr{args.lr}_{args.tag}_seed{args.seed}" # Pass name or default
+            )
         except ImportError:
             print("WandB 未安装。跳过 WandB 初始化。")
             args.wandb_project = None

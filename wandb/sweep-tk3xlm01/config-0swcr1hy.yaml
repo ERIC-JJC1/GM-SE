@@ -1,0 +1,32 @@
+wandb_version: 1
+
+batch_size:
+  value: 32
+data_dir:
+  value: data/windows_ieee33
+device:
+  value: cuda
+epochs:
+  value: 60
+gnn_hidden:
+  value: 64
+gnn_layers:
+  value: 2
+hidden_dim:
+  value: 128
+lr:
+  value: 0.001
+nhead:
+  value: 8
+num_layers:
+  value: 2
+save_dir:
+  value: checkpoints
+seed:
+  value: 42
+tag:
+  value: W24
+use_gnn:
+  value: true
+wandb_project:
+  value: GridSE_RefineSeq

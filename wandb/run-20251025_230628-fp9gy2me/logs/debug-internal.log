@@ -1,0 +1,12 @@
+{"time":"2025-10-25T23:06:28.902489474+08:00","level":"INFO","msg":"stream: starting","core version":"0.22.2"}
+{"time":"2025-10-25T23:06:29.63027648+08:00","level":"INFO","msg":"stream: created new stream","id":"fp9gy2me"}
+{"time":"2025-10-25T23:06:29.630486634+08:00","level":"INFO","msg":"stream: started","id":"fp9gy2me"}
+{"time":"2025-10-25T23:06:29.630528556+08:00","level":"INFO","msg":"handler: started","stream_id":"fp9gy2me"}
+{"time":"2025-10-25T23:06:29.630565303+08:00","level":"INFO","msg":"writer: started","stream_id":"fp9gy2me"}
+{"time":"2025-10-25T23:06:29.630569792+08:00","level":"INFO","msg":"sender: started","stream_id":"fp9gy2me"}
+{"time":"2025-10-25T23:06:32.300881506+08:00","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"updating run metadata","runtime_seconds":2.377234496}],"total_operations":1}}
+{"time":"2025-10-25T23:06:33.41323698+08:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-10-25T23:06:34.441761327+08:00","level":"INFO","msg":"stream: closing","id":"fp9gy2me"}
+{"time":"2025-10-25T23:06:34.44178424+08:00","level":"INFO","msg":"handler: closed","stream_id":"fp9gy2me"}
+{"time":"2025-10-25T23:06:34.441888767+08:00","level":"INFO","msg":"sender: closed","stream_id":"fp9gy2me"}
+{"time":"2025-10-25T23:06:34.441930488+08:00","level":"INFO","msg":"stream: closed","id":"fp9gy2me"}

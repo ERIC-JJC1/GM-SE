@@ -1,0 +1,12 @@
+{"time":"2025-10-25T21:09:07.948596235+08:00","level":"INFO","msg":"stream: starting","core version":"0.22.2"}
+{"time":"2025-10-25T21:09:08.903960639+08:00","level":"INFO","msg":"stream: created new stream","id":"wjf28otg"}
+{"time":"2025-10-25T21:09:08.903994601+08:00","level":"INFO","msg":"handler: started","stream_id":"wjf28otg"}
+{"time":"2025-10-25T21:09:08.904038436+08:00","level":"INFO","msg":"stream: started","id":"wjf28otg"}
+{"time":"2025-10-25T21:09:08.904044277+08:00","level":"INFO","msg":"writer: started","stream_id":"wjf28otg"}
+{"time":"2025-10-25T21:09:08.904053001+08:00","level":"INFO","msg":"sender: started","stream_id":"wjf28otg"}
+{"time":"2025-10-25T21:09:26.365855276+08:00","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"updating run metadata","runtime_seconds":0.000562446}],"total_operations":1}}
+{"time":"2025-10-25T21:09:27.533281021+08:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-10-25T21:09:28.349023124+08:00","level":"INFO","msg":"stream: closing","id":"wjf28otg"}
+{"time":"2025-10-25T21:09:28.349053232+08:00","level":"INFO","msg":"handler: closed","stream_id":"wjf28otg"}
+{"time":"2025-10-25T21:09:28.349197849+08:00","level":"INFO","msg":"sender: closed","stream_id":"wjf28otg"}
+{"time":"2025-10-25T21:09:28.349236011+08:00","level":"INFO","msg":"stream: closed","id":"wjf28otg"}

@@ -1,0 +1,14 @@
+{"time":"2025-10-25T23:09:56.342979581+08:00","level":"INFO","msg":"stream: starting","core version":"0.22.2"}
+{"time":"2025-10-25T23:09:57.417593847+08:00","level":"INFO","msg":"stream: created new stream","id":"gkvwj2gf"}
+{"time":"2025-10-25T23:09:57.417633582+08:00","level":"INFO","msg":"handler: started","stream_id":"gkvwj2gf"}
+{"time":"2025-10-25T23:09:57.417721512+08:00","level":"INFO","msg":"stream: started","id":"gkvwj2gf"}
+{"time":"2025-10-25T23:09:57.417725459+08:00","level":"INFO","msg":"writer: started","stream_id":"gkvwj2gf"}
+{"time":"2025-10-25T23:09:57.417733312+08:00","level":"INFO","msg":"sender: started","stream_id":"gkvwj2gf"}
+{"time":"2025-10-25T23:09:58.330696198+08:00","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":37}
+{"time":"2025-10-25T23:09:58.518971616+08:00","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":172}
+{"time":"2025-10-25T23:09:59.642892923+08:00","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"updating run metadata","runtime_seconds":1.92012578},{"desc":"uploading wandb-metadata.json","runtime_seconds":0.347464377,"progress":"1.7KB/1.7KB"}],"total_operations":2}}
+{"time":"2025-10-25T23:10:02.094807643+08:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-10-25T23:10:03.243747508+08:00","level":"INFO","msg":"stream: closing","id":"gkvwj2gf"}
+{"time":"2025-10-25T23:10:03.243771488+08:00","level":"INFO","msg":"handler: closed","stream_id":"gkvwj2gf"}
+{"time":"2025-10-25T23:10:03.24389317+08:00","level":"INFO","msg":"sender: closed","stream_id":"gkvwj2gf"}
+{"time":"2025-10-25T23:10:03.243905935+08:00","level":"INFO","msg":"stream: closed","id":"gkvwj2gf"}

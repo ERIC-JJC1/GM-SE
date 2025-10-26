@@ -1,0 +1,12 @@
+{"time":"2025-10-25T21:38:51.556916662+08:00","level":"INFO","msg":"stream: starting","core version":"0.22.2"}
+{"time":"2025-10-25T21:38:52.313303214+08:00","level":"INFO","msg":"stream: created new stream","id":"bhfsbrtn"}
+{"time":"2025-10-25T21:38:52.313373932+08:00","level":"INFO","msg":"stream: started","id":"bhfsbrtn"}
+{"time":"2025-10-25T21:38:52.313433121+08:00","level":"INFO","msg":"handler: started","stream_id":"bhfsbrtn"}
+{"time":"2025-10-25T21:38:52.313458378+08:00","level":"INFO","msg":"writer: started","stream_id":"bhfsbrtn"}
+{"time":"2025-10-25T21:38:52.313466314+08:00","level":"INFO","msg":"sender: started","stream_id":"bhfsbrtn"}
+{"time":"2025-10-25T21:38:59.16043451+08:00","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"updating run metadata","runtime_seconds":0.000226215}],"total_operations":1}}
+{"time":"2025-10-25T21:39:00.917868312+08:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-10-25T21:39:03.356463779+08:00","level":"INFO","msg":"stream: closing","id":"bhfsbrtn"}
+{"time":"2025-10-25T21:39:03.356468986+08:00","level":"INFO","msg":"handler: closed","stream_id":"bhfsbrtn"}
+{"time":"2025-10-25T21:39:03.356523535+08:00","level":"INFO","msg":"sender: closed","stream_id":"bhfsbrtn"}
+{"time":"2025-10-25T21:39:03.356526026+08:00","level":"INFO","msg":"stream: closed","id":"bhfsbrtn"}

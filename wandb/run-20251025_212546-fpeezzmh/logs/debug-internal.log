@@ -1,0 +1,12 @@
+{"time":"2025-10-25T21:25:47.002796162+08:00","level":"INFO","msg":"stream: starting","core version":"0.22.2"}
+{"time":"2025-10-25T21:25:47.813940632+08:00","level":"INFO","msg":"stream: created new stream","id":"fpeezzmh"}
+{"time":"2025-10-25T21:25:47.814046197+08:00","level":"INFO","msg":"stream: started","id":"fpeezzmh"}
+{"time":"2025-10-25T21:25:47.814043078+08:00","level":"INFO","msg":"handler: started","stream_id":"fpeezzmh"}
+{"time":"2025-10-25T21:25:47.814068531+08:00","level":"INFO","msg":"writer: started","stream_id":"fpeezzmh"}
+{"time":"2025-10-25T21:25:47.814076298+08:00","level":"INFO","msg":"sender: started","stream_id":"fpeezzmh"}
+{"time":"2025-10-25T21:25:57.973049293+08:00","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"updating run metadata","runtime_seconds":0.001050738}],"total_operations":1}}
+{"time":"2025-10-25T21:25:59.333346991+08:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-10-25T21:26:00.847014758+08:00","level":"INFO","msg":"stream: closing","id":"fpeezzmh"}
+{"time":"2025-10-25T21:26:00.847021118+08:00","level":"INFO","msg":"handler: closed","stream_id":"fpeezzmh"}
+{"time":"2025-10-25T21:26:00.84705429+08:00","level":"INFO","msg":"sender: closed","stream_id":"fpeezzmh"}
+{"time":"2025-10-25T21:26:00.847063874+08:00","level":"INFO","msg":"stream: closed","id":"fpeezzmh"}
